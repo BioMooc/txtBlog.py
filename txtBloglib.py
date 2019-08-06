@@ -1,22 +1,35 @@
-import json,re
+import json,re,time,os
 from flask import escape, url_for
 
+# version 0.0.2
 
 #文本文件阅读器，input filepath, return string from the file.
 def txtReader(fpath):
-	print(fpath)
+	fr=open(fpath, 'r', encoding="utf8")
+	tmp=''
+	for lineR in fr.readlines():
+		line=lineR.strip()
+		#if line.match("")
+		if re.match("\={40,}",line):
+			tmp+="<hr class=top><h4>\n"
+		elif re.match("\-{40,}",line):
+			tmp+="</h4><hr class=under>"
+		else:
+			tmp+=line+"\n";
+	#关闭文件
+	fr.close()
+	return "<div class='content'><pre class=ubuntu1>" + tmp + "</pre></div>\n";
+#
+
+def htmlReader(fpath):
 	fr=open(fpath, 'r', encoding="utf8")
 	tmp=""
 	for lineR in fr.readlines():
 		line=lineR.strip()
-		tmp+=line+"<br>";
-		print(tmp)
+		tmp+=line;
 	#关闭文件
 	fr.close()
 	return tmp;
-#
-htmlReader=txtReader #todo
-
 
 
 
@@ -42,7 +55,7 @@ def getData(k,id):
 	url_left=""
 	for i in range(len(menus)):
 		#print("="*10,menus[i]["title"]);
-		url_left+="<h5 class=title>"+menus[i]["title"]+"</h5>\n<ul class=submenu>\n";
+		url_left+="<li><h5 class=title>"+str(i)+" "+menus[i]["title"]+"</h5>\n<ul class=submenu>\n";
 
 		arr2=menus[i]["data"];
 		for j in range(len(arr2)):
@@ -51,12 +64,19 @@ def getData(k,id):
 			if i==n0 and j==n1:
 				cur=" class=cur"
 			#
-			item_url=url_for('hello2', k=k, id=str(i)+"_"+str(j)) #第一个参数是函数名，不是路由
+			id=str(i)+"_"+str(j)
+			item_url=url_for('hello2', k=k, id=id) #第一个参数是函数名，不是路由
 			
-			url_left+="<li"+cur+"><a href=" + item_url +">"+arr2[j][0]+"</a></li>\n"
-		url_left+="</ul>\n"
+			url_left+="<li"+cur+"><a href=" + item_url +">"+id+" "+arr2[j][0]+"</a></li>\n"
+		url_left+="</ul>\n</li>\n"
 	#关闭文件
 	load_f.close();
+	
+	#上次修改时间
+	#modified=time.localtime(os.path.getctime(filepath))
+	modified = os.path.getmtime(filepath)
+	year,month,day,hour,minute,second=time.localtime(modified)[:-3]
+	lastModified=str(year)+"-"+str(month)+"-"+str(day) +" "+str(hour)+":"+str(minute)+":"+str(second)
 
 
 	#根据文件类型，读取文件
@@ -65,7 +85,8 @@ def getData(k,id):
 		content=htmlReader(filepath)
 	elif suffix=="txt":
 		content=txtReader(filepath)
-	return (url_left, content,filepath)
+	return (url_left, content,filepath.replace("data/",""), lastModified,suffix)
+	#          0        1       2                              3           4
 #
 
 

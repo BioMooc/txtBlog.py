@@ -1,5 +1,5 @@
 ################################
-# project name: txtBlog_py is the python3 version of txtBlog
+# project name: txtBlog.py is the python3 version of txtBlog
 # version: 0.0.1
 
 # local url:http://blog2.163.com/
@@ -16,5 +16,12 @@
 每次改动需要重启才能生效
 
 v0.0.1 py框架基本可用，有顶部menu和左侧menu，有右侧内容了。
+v0.0.2 套用了css格式，支持txt，支持无图html文件
+
+
+todo:
+	html插入图片、底部链接没搞定。
+
+
 
 

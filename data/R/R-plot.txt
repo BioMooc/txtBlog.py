@@ -1,3 +1,74 @@
 this is R
 
-plot
+R语言进阶-数据框
+
+主要包括 data.frame 操作，及其进阶操作
+1. 数据框基本操作
+2. apply 家族函数。
+3. dplyr 包 --> 详见专题 数据框清理
+
+
+更多高级话题：
+https://segmentfault.com/a/1190000004621068
+
+
+
+========================================
+公众号文章总结过的话题 及数据框相关资源
+----------------------------------------
+1. R语言 | 数据框data.frame操作一网打尽
+https://mp.weixin.qq.com/s?__biz=MzU4MDAwODIyNw==&mid=2247483700&idx=1&sn=666b928c3af73456d369dcfaa352c0bd&chksm=fd5c2178ca2ba86e85c557f2cf744f2a755bdda603ad9ffd6571972de6f162f7e9b756e4daf9#rd
+
+
+
+
+【R语言】必学包之dplyr包
+https://blog.csdn.net/wltom1985/article/details/54973811
+
+
+
+长宽转换仍然支持plyr中的melt/dcast函数以及tidyr中的gather/spread函数。
+
+
+
+========================================
+数据框data.frame的增删改查
+----------------------------------------
+# http://www.cnblogs.com/studyzy/p/4316118.html
+
+Data Frame一般被翻译为数据框，感觉就像是R中的表，由行和列组成，与Matrix不同的是，每个列可以是不同的数据类型，而Matrix是必须相同的。
+Data Frame每一列有列名，每一行也可以指定行名。如果不指定行名，那么就是从1开始自增的Sequence来标识每一行。
+
+# 参考
+# http://www.cnblogs.com/studyzy/p/4316118.html
+# https://cos.name/cn/topic/12365/
+
+
+1. 创建数据框
+(1)使用已有向量建立数据框
+patientID <- c(1:4)
+age <- c(25,31,42,57)
+diabetes <- c("Type1","Type2","Type3","Type4")
+status <- c("Poor","Improved","Excellent","Poor")
+patientdata <- data.frame(patientID,age,'diabetesType'=diabetes,status) #可以修改列名
+patientdata
+结果
+patientID age diabetesType status
+1 1 25 Type1 Poor
+2 2 31 Type2 Improved
+3 3 42 Type3 Excellent
+4 4 57 Type4 Poor
+
+
+
+
+========================================
+在数据框指定位置插入一列
+----------------------------------------
+y<-1:4
+dataE1 <-data.frame(x1=c(1,3,5,7), x2=c(2,4,6,8),x3=c(11,12,13,14),x4=c(15,16,17,18))
+dataE1
+dataE2<-cbind(dataE1[,1:2],y,dataE1[,3:ncol(dataE1)])
+dataE2
+
+

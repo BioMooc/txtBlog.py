@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+    <meta name="keywords" content="css,javascript,node,jquery,git,python,java,sql,php,mysql,linux,ios,android,教程,软件,编程,开发,运维,云计算,网络,互联网" />
+    <meta name="description" content="研究互联网产品和技术，提供原创中文精品教程" />
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<!--link rel="stylesheet" type="text/css" href="/public/css/base.css" media="all">
+	<script type="text/javascript" src="/public/js/common.js"></script>
+	<link rel="stylesheet" type="text/css" href="/public/css/main.css" media="all"-->
+
+
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}" media="all">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/base.css')}}" media="all">
+	<title>Dawn's Blog: web技术博客 - Powered by txtBlog.py</title>
+	<script type="text/javascript" src="{{url_for('static', filename='js/common.js')}}"></script>
+{% if suffix=="txt" %}
+	<script type="text/javascript" src="{{url_for('static', filename='js/txt.js')}}"></script>
+{% endif %}
+
+</head>
+
+<body>
+<div class=header>
+
+<div class=nav>
+<b><a class='redBg' href='/index.php'>Dawn's Blog</a></b>
+{{ topMenu|safe }}
+</div>
+
+</div>
+
+
+<div class=clear></div>
+<!--主体-->
+<div class=main>
+	<!--左边目录-->
+	<ul class=left id='leftpanel'>
+
+
+
+	{{ leftMenu|safe }}
+
+
+
+	</ul>
+
+
+
+
+<script>
+//获得元素
+function $(s){
+	return document.getElementById(s);
+}
+//打印结果，调试用
+function n(s){
+	console.log(s);
+}
+
+//左侧菜单toggle
+var oUl=$('leftpanel');
+
+//getElementsByClassName不兼容IE8-。用到了common.js中定义的函数getElementsByClassName
+var aTitle=getElementsByClassName('title',oUl);
+var aSubMenu=getElementsByClassName('submenu',oUl);
+
+
+for(var i=0;i<aTitle.length;i++){
+	var oTitle=aTitle[i];
+	oTitle.index=i;
+	oTitle.onclick=function(){
+		var oSubMenu=aSubMenu[this.index];
+		if(oSubMenu.style.display=='none'){
+			oSubMenu.style.display='block';
+		}else{
+			oSubMenu.style.display='none';
+		}
+	}
+}
+
+
+//为html的title添加文件名
+document.title += " |{{ filepath }}"
+</script>	
+
+
+
+	<div class=right>
+		<p class="filepath">{{ filepath|safe }} [lastModified: {{ lastModified|safe }}]</p>
+
+		
+		{{ content|safe }}
+
+
+	</div>
+</div>
+
+
+<div class=clear></div>
+
+
+
+
+
+
+<!--尾部-->
+<style>
+.ewm{float:right; margin: -40px 10px;}
+.ewm img{ width: 100px;}
+.ewm p{ text-align:center;}
+
+</style>
+
+
+
+
+<div class='footer'>
+	<a name='footer'></a>
+	<div class=wrap>
+		<div class='fade'>
+
+		{{ footer|safe }}
+		
+		
+		</div>
+		
+		
+		<div class=ewm><img src="{{url_for('static', filename='images/erweima.png')}}"><p>扫码关注</p></div>
+
+		
+		
+		<div class='links'>
+			Copyright &copy; 2009 - 2019 DawnEve. All Rights Reserved. | 
+			<a target='_blank' href='https://github.com/DawnEve'>Folk me on Github</a> | 
+			<a class=red href='/index.py?k=Git&id=0_2'>Contact me</a> | 
+			<a target='_blank' href='http://pan.baidu.com/s/1i3imHpF' title='密码:qa53'>web tools</a>
+		</div>
+
+		
+		<div class='small fade'>
+			♥ Do have faith in what you're doing. 
+			Powered by <a target='_blank' href='https://github.com/DawnEve/txtBlog.py' title='txtBlog.py(A simple yet powerful blog system for reading and organizing txt files, based on Python Flask.)'>txtBLog v0.1</a>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="foot_top">
+	<a href="#" id="to_top" onclick='gotoTop();return false;'>返回顶部</a>
+	<a href="#footer" id="to_top">下到底部</a>
+</div>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+

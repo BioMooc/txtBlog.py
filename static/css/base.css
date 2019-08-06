@@ -1,0 +1,208 @@
+/*初始化*/
+*{padding:0;margin:0; font-family: "Microsoft Yahei","宋体","Tahoma",Arial;}
+
+.wrap{width:1000px;margin:0 auto;}
+.clear{clear:both;width:100%;height:10px;}
+.filepath{padding:5px; margin-bottom:5px; font-size: 12px;color:#ccc; border-bottom:1px dashed #eee;}
+.alert{margin:10px auto;width:400px;color:red;}
+
+.header,.main,footer{width:100%;}
+.header{box-shadow: 0 2px 3px rgba(0,0,0,0.15),inset 0 -1px 0 0 #fcfcfc; margin-bottom:5px; 
+	position: fixed;top: 0;left: 0;z-index: 5;}
+.header h1{margin:0 10px;}
+.main{margin-top:35px;}
+.footer{background:#000;padding:10px 20px;color:#fff;}
+.footer a{color:#fff;}
+
+/*顶部导航*/
+.nav{background:#fafafa; overflow:hidden;}
+.nav a{float:left;}
+.nav a:hover{background:#0096ff;color:#fff;}
+.nav .topmenu{color:#333; padding:5px;border-right:1px solid #eee; text-decoration: none; border-bottom: 2px solid #fafafa;}
+.nav .current{/*background:#0096ff;color:#fff;*/background:#ddd; border-bottom: 2px solid #0096ff;}
+
+
+/*left*/
+.main .left{
+	background-color: #f3f3f3;
+	border: 1px solid #D9D9D9;
+	
+	width:200px;padding:5px;
+	float:left;
+	clear:right;
+}
+
+
+.main .right{
+	border:1px solid #eee;
+	padding:10px;margin:5px;
+
+	margin-left: 220px;/*==等于左边栏宽度==*/
+	
+	min-height: 200px;
+	height: auto !important;
+	height: 200px;
+}
+
+
+/*间距*/
+.space20{width:100%; height:20px;}
+.space40{width:100%; height:40px;}
+.space60{width:100%; height:60px;}
+
+
+#leftpanel h5 {
+    height: 35px;
+    line-height: 35px;
+    margin: -1px 1px 0;
+    border: 1px solid #D9D9D9;
+    border-width: 1px 0;
+    font-size: 14px;
+    text-indent: 0px;
+    color: #333;
+    cursor: pointer;
+}
+
+#leftpanel .submenu{
+	color:red;
+	margin-left: 0px;
+	list-style:none;
+	cursor: pointer;
+	display:block;
+}
+#leftpanel .submenu li{
+	padding-left: 15px;
+}
+
+#leftpanel .submenu li.cur{
+	background-color:#eee;
+}
+#leftpanel .submenu li.cur a{
+	border-right: 5px solid #563d7c;
+    font-weight: bold; 
+    color: #563d7c; 
+}
+#leftpanel .submenu li:hover{
+	background-color:#ddd;
+}
+#leftpanel .submenu a{
+	display: block;
+	text-decoration: none;
+	color: #333;
+	
+	height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+/*返回顶部*/
+.foot_top{ padding:5px; font:14px/20px arial; text-align:center; 
+	color:#fff;
+    position: fixed;
+    bottom:0px;
+    right:0px;
+	text-decoration: none;
+	z-index: 5;
+	border-radius:10px;
+}
+.foot_top a{color:#fff; margin:1px;display:block;      background: #0096FF; 
+    padding: 5px; text-decoration: none; border-radius: 5px; opacity:0.2;}
+.foot_top a:hover{text-decoration:underline;opacity:0.9;}
+
+.footer{padding: 50px 0;} 
+.footer a{margin:10px 2px; display: inline-block;} 
+
+
+/*一些通用的颜色和样式*/
+.small {font-size: 11px;}
+.fade {color: #888;}
+.fade a{color: #888;}
+
+.light {color: #ccc;}
+.gray {    color: #999;}
+
+.red{color:red;}
+.red a, a.red{color:red;}
+
+.green{color:green;}
+.green a, a.green{color:green;}
+
+a.redBg{ background:#fafafa;color:#0096ff;  padding: 5px; text-decoration:none; border-bottom: 2px solid #0096ff;}
+a.redBg:hover{background:#fafafa; color:#0096ff;}
+
+
+code{font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 12px;}
+p>code {
+    font-family: monospace;
+    background-color: #eaeaea;
+
+
+	font-size: 85%;
+    background-color: rgba(0,0,0,0.04);
+    border-radius: 3px;
+	    padding: 5px; margin: 5px;
+}
+
+
+.tips{
+	font:15px/1.5 Courier;
+	color: #787d82;background: #edf1f2;
+	padding:5px;
+}
+
+/*引用实例*/
+blockquote{
+    background: url(../images/quotes.gif) no-repeat top left;
+    background-position: 12px 12px;
+    margin: 5px 0;
+    padding: 8px 1em 8px 4em;
+	border-left: 10px #eee solid;
+	
+	font-family: 'PT Serif', Georgia, Times, 'Times New Roman', 'Heiti SC', 'Microsoft Yahei', 微软雅黑, 宋体, serif;
+	font-size: larger;
+	font-style: normal;
+}
+
+blockquote.small{
+    margin-bottom: 0;
+    font-weight: 300;
+    line-height: 1.25;
+    font-size: 12px;
+    color: #999999;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding: 0 0 0 15px;
+    margin: 0 20px 20px;
+    border-left: 5px solid #eee;
+    background: none;
+}
+
+
+
+/*======================媒体查询，添加随着窗口大小而显示或隐藏的内容=========================*/
+@media screen and (max-width: 1280px) { /*小屏幕：宽度小于1280px时，应用下面的CSS样式*/
+  div#topTime{
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1280px) { /*大屏幕：宽度大于1280px时，应用下面的CSS样式*/
+  div#topTime{
+    display:block;
+  }
+}
+
+@media screen and (max-width: 420px) { /*手机屏幕*/
+  .main .left {
+    width:100px; overflow:hidden;
+  }
+  .main .right{
+	  margin-left: 120px;
+  }
+  #leftpanel .submenu li {
+    padding-left: 0;
+  }
+  #leftpanel h5 , #leftpanel .submenu a {font-size: 5px;overflow: hidden;}
+  .footer{overflow: auto;padding:0;}
+}
