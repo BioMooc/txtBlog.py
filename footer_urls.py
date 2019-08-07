@@ -4,7 +4,7 @@ footer_urls={
 		['http://jquery.cuishifeng.cn/','jQuery手册'],
 		['http://www.runoob.com/','菜鸟教程网'],
 		['http://www.w3school.com.cn/','w3school'],
-		['http://php.net/','PHP']
+		['http://php.net/','PHP'] ##tet
 	],
 	
 	"bio_info":[

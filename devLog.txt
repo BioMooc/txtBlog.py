@@ -5,19 +5,15 @@ project name: txtBlog_py
 #dir:G:\xampp\htdocs\163
 ################################
 
-
 # 使用flask框架，尽量简化。https://flask.palletsprojects.com/en/1.1.x/
 # 顶部关键词，左侧文件名。使用json做配置文件。
 # 预计支持html/txt格式的文档。尽量留下扩展。
 
-
 #quick start: https://flask.palletsprojects.com/en/1.1.x/quickstart/#quickstart
 每次改动需要重启才能生效
 
-
 ################################
 1.如何从路由器传入参数
-
 hello.py 最简单服务器
 
 (1)路由器
@@ -26,9 +22,6 @@ hello2.py 路由器Routing
 @app.route('/hello')
 def hello():
     return 'Hello, World'
-#
-
-
 
 (2)传入参数
 from flask import Flask, escape, url_for
@@ -43,14 +36,11 @@ def hello2():
 # keyword:R
 # id: 3_4
 
-
 (3)使用 url_for() 生成URL
 from flask import Flask, escape, url_for
 url_for('index', k='Java',id="0_0")
 #第一个参数是函数名，不是路由。必须定义过，否则报错。
 #输出的路径是按照路由构建的，与函数名无关。
-
-
 
 实例
 from flask import Flask, escape,request, url_for
@@ -61,7 +51,6 @@ app = Flask(__name__)
 def index():
     urls=url_for('hello2', k='Java',id="0_0") #第一个参数是函数名，不是路由
     return '<a target=_blank href='+urls+'>index</a> '+urls
-
 
 #1.从url传入get参数:k和id
 @app.route('/index.py')
@@ -87,11 +76,6 @@ if __name__ == '__main__':
     app.run(host="blog2.163.com",port=8000)
 #
 
-
-
-
-
-
 ################################
 2. 如何从关键词读取json文件，找到txt文件,并显示内容
 #数据文件
@@ -104,7 +88,6 @@ if __name__ == '__main__':
 			["参考资料", "R-plot", "txt" ]
 		]
 	},
-
 	{
 		'title':"R语法",
 		'data':
@@ -116,10 +99,6 @@ if __name__ == '__main__':
 	}
 ]
 
-
-
-
-
 #读取方式
 import json,re
 import sys
@@ -130,7 +109,6 @@ import sys
 
 k=sys.argv[1]
 id=sys.argv[2]
-
 
 #文本文件阅读器，放到lib中
 def txtReader(fpath):
@@ -146,8 +124,6 @@ def txtReader(fpath):
 	return tmp;
 #
 htmlReader=txtReader #todo
-
-
 
 def getData(k,id):
 	#1.解析id为2个数字
@@ -183,7 +159,6 @@ def getData(k,id):
 	#关闭文件
 	load_f.close();
 
-
 	#根据文件类型，读取文件
 	content="";
 	if suffix=="html":
@@ -191,8 +166,6 @@ def getData(k,id):
 	elif suffix=="txt":
 		content=txtReader(filepath)
 	return (url_left, content,filepath)
-
-#
 
 #rs=getData("R","0_1")
 rs=getData(k,id)
@@ -206,18 +179,20 @@ print('filepath=',rs[2])
 运行：
 python getDataFrom_k_id.py R 0_1
 
-
-
-
 ################################
 3. 把step2显示到网页中
 
 添加topMenu
 添加bottom link region
 
-
-
 ################################
 4. 装饰上html
+
+
+v0.0.1 py框架基本可用，有顶部menu和左侧menu，有右侧内容了。
+v0.0.2 套用了css格式，支持txt，支持无图html文件
+v0.0.3 支持html插入非static/下的图片了
+v0.0.4 底部链接搞定。
+v0.0.5 添加使用说明 ReadMe.txt
 
 
