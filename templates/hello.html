@@ -6,14 +6,17 @@
     <meta name="description" content="研究互联网产品和技术，提供原创中文精品教程" />
 	<link rel="shortcut icon" href="/favicon.ico">
 
-	<!--link rel="stylesheet" type="text/css" href="/public/css/base.css" media="all">
+	<!--
+	<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+	
+	link rel="stylesheet" type="text/css" href="/public/css/base.css" media="all">
 	<script type="text/javascript" src="/public/js/common.js"></script>
 	<link rel="stylesheet" type="text/css" href="/public/css/main.css" media="all"-->
 
 
 	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}" media="all">
 	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/base.css')}}" media="all">
-	<title>Dawn's Blog: web技术博客 - Powered by txtBlog.py</title>
+	<title>txtBlog.py: web技术博客 - Powered by txtBlog.py</title>
 	<script type="text/javascript" src="{{url_for('static', filename='js/common.js')}}"></script>
 {% if suffix=="txt" %}
 	<script type="text/javascript" src="{{url_for('static', filename='js/txt.js')}}"></script>
@@ -25,7 +28,7 @@
 <div class=header>
 
 <div class=nav>
-<b><a class='redBg' href='/index.php'>Dawn's Blog</a></b>
+<b><a class='redBg' href='/index.php'>txtBlog.py</a></b>
 {{ topMenu|safe }}
 </div>
 
@@ -127,7 +130,7 @@ document.title += " |{{ filepath }}"
 		</div>
 		
 		
-		<div class=ewm><img src="{{url_for('static', filename='images/erweima.png')}}"><p>扫码关注</p></div>
+		<div class=ewm><img src="/static/images/erweima.png"><p>扫码关注</p></div>
 
 		
 		

@@ -1,9 +1,10 @@
 import json,re,time,os
 from flask import escape, url_for
 
-# version 0.0.2
+# version 0.0.3
 
 #文本文件阅读器，input filepath, return string from the file.
+#v0.2
 def txtReader(fpath):
 	fr=open(fpath, 'r', encoding="utf8")
 	tmp=''
@@ -19,22 +20,22 @@ def txtReader(fpath):
 	#关闭文件
 	fr.close()
 	return "<div class='content'><pre class=ubuntu1>" + tmp + "</pre></div>\n";
-#
 
+#html读取器
+#v0.1
 def htmlReader(fpath):
 	fr=open(fpath, 'r', encoding="utf8")
 	tmp=""
 	for lineR in fr.readlines():
 		line=lineR.strip()
-		tmp+=line;
+		tmp+=line+"\n";
 	#关闭文件
 	fr.close()
 	return tmp;
 
 
-
-
 #input k and id, return url_left and content, filepath
+#v0.3
 def getData(k,id):
 	#1.解析id为2个数字
 	arr=re.split("_", id)
@@ -65,7 +66,7 @@ def getData(k,id):
 				cur=" class=cur"
 			#
 			id=str(i)+"_"+str(j)
-			item_url=url_for('hello2', k=k, id=id) #第一个参数是函数名，不是路由
+			item_url=url_for('hello', k=k, id=id) #第一个参数是函数名，不是路由
 			
 			url_left+="<li"+cur+"><a href=" + item_url +">"+id+" "+arr2[j][0]+"</a></li>\n"
 		url_left+="</ul>\n</li>\n"
@@ -87,10 +88,10 @@ def getData(k,id):
 		content=txtReader(filepath)
 	return (url_left, content,filepath.replace("data/",""), lastModified,suffix)
 	#          0        1       2                              3           4
-#
 
 
 #顶部菜单生成
+#v0.2
 def getTopMenu(k):
 	load_f=open("data/topMenu.json",'r',encoding="utf8")
 	#读取json
@@ -98,10 +99,9 @@ def getTopMenu(k):
 
 	tmp=""
 	for i in range(len(menus)):
-		item_url=url_for('hello2', k=k, id="0_0")
+		item_url=url_for('hello', k=menus[i][0], id="0_0")
 		cur=""
 		if menus[i][0]==k:
 			cur=" current"
 		tmp+=" <a class='topmenu"+cur+"' href=" + item_url +" title="+menus[i][1]+">"+menus[i][0]+"</a> "
 	return tmp;
-
