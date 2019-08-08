@@ -4,7 +4,7 @@ from flask import escape, url_for
 # version 0.0.3
 
 #文本文件阅读器，input filepath, return string from the file.
-#v0.2
+#v0.3
 def txtReader(fpath):
 	fr=open(fpath, 'r', encoding="utf8")
 	tmp=''
@@ -14,7 +14,7 @@ def txtReader(fpath):
 		if re.match("\={40,}",line):
 			tmp+="<hr class=top><h4>\n"
 		elif re.match("\-{40,}",line):
-			tmp+="</h4><hr class=under>"
+			tmp+="</h4><hr class=under>\n"
 		else:
 			tmp+=line+"\n";
 	#关闭文件
