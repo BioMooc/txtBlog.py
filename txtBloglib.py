@@ -1,16 +1,20 @@
 import json,re,time,os
 from flask import escape, url_for
 
-# version 0.0.3
+# version 0.0.4
 
 #文本文件阅读器，input filepath, return string from the file.
-#v0.3
+#v0.3 <h4>下添加换行，防止遮挡;
+#v0.4 对尖括号转码
 def txtReader(fpath):
 	fr=open(fpath, 'r', encoding="utf8")
 	tmp=''
 	for lineR in fr.readlines():
 		line=lineR.strip()
 		#if line.match("")
+		line=re.sub("<","&lt;",line);
+		line=re.sub(">","&gt;",line);
+		#
 		if re.match("\={40,}",line):
 			tmp+="<hr class=top><h4>\n"
 		elif re.match("\-{40,}",line):
@@ -19,7 +23,8 @@ def txtReader(fpath):
 			tmp+=line+"\n";
 	#关闭文件
 	fr.close()
-	return "<div class='content'><pre class=ubuntu1>" + tmp + "</pre></div>\n";
+	js='<script type="text/javascript" src="static/js/txt.js"></script>\n\n'
+	return js+"<div class='content'><pre class=ubuntu1>" + tmp + "</pre></div>\n";
 
 #html读取器
 #v0.1
@@ -32,7 +37,19 @@ def htmlReader(fpath):
 	#关闭文件
 	fr.close()
 	return tmp;
+#
 
+#markdown读取器
+#v0.1
+def markdownReader(fpath):
+	fr=open(fpath, 'r', encoding="utf8")
+	tmp=""
+	for lineR in fr.readlines():
+		line=lineR.strip()
+		tmp+=line+"\n";
+	#关闭文件
+	fr.close()
+	return tmp;
 
 #input k and id, return url_left and content, filepath
 #v0.3
@@ -74,18 +91,25 @@ def getData(k,id):
 	load_f.close();
 	
 	#上次修改时间
-	#modified=time.localtime(os.path.getctime(filepath))
-	modified = os.path.getmtime(filepath)
-	year,month,day,hour,minute,second=time.localtime(modified)[:-3]
-	lastModified=str(year)+"-"+str(month)+"-"+str(day) +" "+str(hour)+":"+str(minute)+":"+str(second)
+	lastModified = "2017-10-19 7:0:0"
 
 
 	#根据文件类型，读取文件
-	content="";
-	if suffix=="html":
-		content=htmlReader(filepath)
-	elif suffix=="txt":
-		content=txtReader(filepath)
+	content='<div class="alert">该文章暂时未公开，请稍后再来...</div>';
+	if os.path.exists(filepath):
+		# modified date and time;
+		#modified=time.localtime(os.path.getctime(filepath))
+		modified = os.path.getmtime(filepath)
+		year,month,day,hour,minute,second=time.localtime(modified)[:-3]
+		lastModified=str(year)+"-"+str(month)+"-"+str(day) +" "+str(hour)+":"+str(minute)+":"+str(second)
+		# content
+		if suffix=="html":
+			content=htmlReader(filepath)
+		elif suffix=="markdown" or suffix=='md':
+			content=markdownReader(filepath)
+		else: #txt
+			content=txtReader(filepath)
+
 	return (url_left, content,filepath.replace("data/",""), lastModified,suffix)
 	#          0        1       2                              3           4
 

@@ -1,5 +1,5 @@
 ################################
-project name: txtBlog_py
+project name: txtBlog.py
 
 #local url:http://blog2.163.com/
 #dir:G:\xampp\htdocs\163
@@ -196,5 +196,11 @@ v0.0.4 底部链接搞定。
 v0.0.5 添加使用说明 ReadMe.txt
 v0.0.6 微调说明文档。
 v0.0.7-1 微调txt阅读器函数
+v0.0.7-2 txt.js在txt解析器内部引用; 默认是txt解析器; txt解析器转码2个尖括号; 处理文档不存在;
+	{% if suffix=="txt" %}{% endif %}
+开始研究添加md解析器
+
+
+
 
 
