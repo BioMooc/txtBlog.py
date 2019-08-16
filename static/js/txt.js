@@ -1,12 +1,15 @@
+/* 添加目录
+*v 0.2
+*/
 function addContents(){
-	//获取目录dom
-	 aH4=document.getElementsByTagName('h4')
+	//get dom: h4 node
 	var	oContent=getElementsByClassName('content')[0],
 		oPre=oContent.getElementsByTagName('pre')[0],
+		aH4=oPre.getElementsByTagName('h4'),
 		
 		oDiv=createElement('div'),
 		oUl=createElement('ol');
-	//添加标题、日期
+	//add h2 title
 	oDiv.appendChild( createElement('h2',{},'目录' ) );
 	//oDiv.appendChild( createElement('p',{}, 'lastModified: ' + document.lastModified ) );
 	//添加内容
@@ -14,8 +17,9 @@ function addContents(){
 		var text=aH4[i].innerHTML;
 		if(trim(text)!=''){
 			// 添加锚定a标签到h4标签前面，包含显示编号
-			var oH4 = aH4[i];
-			oH4.parentNode.insertBefore( createElement('a',{'class':'smallA', 'name':i}, '[Section '+(i+1)+']'), oH4 ); //显示从1开始，而不是0.
+			var oH4 = aH4[i], oHr=oH4.previousSibling;
+			oHr.parentNode.insertBefore( createElement('a',{'name':i}, ''), oHr ); //hr.top前加锚点,无显示
+			oH4.parentNode.insertBefore( createElement('a',{'class':'smallA'}, '[Section '+(i+1)+']'), oH4 ); //h4前显示section，从1开始，而不是0.
 			
 			//li中添加span,span中添加text
 			var innerSpan = createElement('span',{},text );
