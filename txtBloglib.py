@@ -1,6 +1,6 @@
 import json,re,time,os
 from flask import escape, url_for
-
+import mistune
 # version 0.0.4
 
 #文本文件阅读器，input filepath, return string from the file.
@@ -43,12 +43,16 @@ def htmlReader(fpath):
 #v0.1
 def markdownReader(fpath):
 	fr=open(fpath, 'r', encoding="utf8")
-	tmp=""
-	for lineR in fr.readlines():
-		line=lineR.strip()
-		tmp+=line+"\n";
-	#关闭文件
+	text=fr.read()
 	fr.close()
+	#
+	tmp=mistune.markdown(text, escape=False, hard_wrap=True) #'I am using **mistune markdown parser**'
+	tmp="<div class=markdown>\n"+tmp+"</div>\n"
+	#tmp="<div class=content>\n"+tmp+"</div>\n"
+	
+	# add style sheet
+	css='<link rel="stylesheet" type="text/css" href="/static/css/MarkDown3.css" media="all">\n'
+	tmp=css+tmp;
 	return tmp;
 
 #input k and id, return url_left and content, filepath
@@ -67,7 +71,7 @@ def getData(k,id):
 	#凑出来文件路径
 	menuCur =  menus[n0]["data"][n1]
 	filepath="data/"+k+"/"+menuCur[1]+"."+menuCur[2] #路径
-	suffix=menuCur[2] #后缀
+	suffix=menuCur[2].lower() #后缀
 
 	#拼凑出超链接
 	url_left=""

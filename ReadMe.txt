@@ -2,7 +2,7 @@
 # project name: txtBlog.py is the python3 version of txtBlog 
 # desc: [知识管理]A simple yet powerful blog system for reading and organizing txt files.
 # desc2: Pyhton3编写的、基于文件的文本笔记管理系统，简捷高效，可用于管理知识。
-# version: 0.0.7-2
+# version: 0.0.7-3
 # github: https://github.com/DawnEve/txtBlog.py
 # appearence: https://github.com/DawnEve/txtBlog
 #
@@ -17,7 +17,7 @@
 # 和记忆作斗争，是“坐家”们毕生的事业，本项目是一个简洁的文本笔记系统，就是为了管理知识，支持插入少量图片。
 # 使用Python3的flask包，尽量简化。https://flask.palletsprojects.com/en/1.1.x/
 # 顶部关键词，左侧文件名，都使用json格式的配置文件。
-# 支持html/txt格式的笔记，未来会支持markdown。
+# 支持html/txt格式的笔记，未来会支持markdown, ReStructuredText等;
 # 为了应付最危险的情况：python部件不再支持(5-10年内不会发生)，博客系统失灵，建议文件命名时要言简意赅、见名知意！保证human也能读懂。
 #
 

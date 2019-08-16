@@ -199,8 +199,16 @@ v0.0.7-1 微调txt阅读器函数
 v0.0.7-2 txt.js在txt解析器内部引用; 默认是txt解析器; txt解析器转码2个尖括号; 处理文档不存在;
 	{% if suffix=="txt" %}{% endif %}
 开始研究添加md解析器
+v0.0.7-3 支持md了
+	后缀名可以是makdown或md都行。
+	添加三套皮肤: MarkDown.css, MarkDown2.css(线条形状), MarkDown3.css(现在github的样式表，.markdown-body 替换为 .markdown), 
+	md1 是github原来使用的，现在使用的md3更紧凑，调整了颜色。
+#
 
+	
 
-
+todo:
+1.md 不支持代码高亮
+2.md不支持自动生成目录。
 
 
