@@ -164,11 +164,13 @@ web based tutorials
 3. 如何制作皮肤？
 css文件在 static/css/下，可尝试修改该文件。
 未来可能会支持更多可配置的外观。//todo
+/static/css/
+|-- base.css 是基础样式，不建议改动;
+|-- main.css 是html和txt页面的样式，可以尝试更改为自己喜欢的颜色;
+|-- MarkDown.css 是markdown的样式表;
 
 
-
-
-
+目前 txt 页面默认是纸质书背景。
 
 
 

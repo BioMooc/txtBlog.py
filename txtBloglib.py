@@ -6,6 +6,7 @@ import mistune
 #文本文件阅读器，input filepath, return string from the file.
 #v0.3 <h4>下添加换行，防止遮挡;
 #v0.4 对尖括号转码
+#v0.5 添加纸质背景
 def txtReader(fpath):
 	fr=open(fpath, 'r', encoding="utf8")
 	tmp=''
@@ -14,7 +15,7 @@ def txtReader(fpath):
 		#if line.match("")
 		line=re.sub("<","&lt;",line);
 		line=re.sub(">","&gt;",line);
-		#
+		#add text
 		if re.match("\={40,}",line):
 			tmp+="<hr class=top><h4>\n"
 		elif re.match("\-{40,}",line):

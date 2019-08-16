@@ -93,4 +93,12 @@ github 2019.8.16 .markdown-body
 
 
 /*fix other css style files*/
-.markdown blockquote{background: white; font-size: unset;}
+.markdown blockquote{ background:white; font-size: unset;
+    padding: 15px 20px;
+    background-color: rgba(102,128,153,0.05);
+	border-left: 5px solid rgba(102,128,153,0.075);
+	border-left-width: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+	
+}
