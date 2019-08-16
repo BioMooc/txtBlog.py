@@ -198,6 +198,13 @@ blockquote.small{
 }
 
 
+/* 段落前空几格 */
+.indent_1{text-indent: 0em;}
+.indent_2{text-indent: 2em;}
+.indent_3{text-indent: 4em;}
+.indent_4{text-indent: 6em;}
+.indent_5{text-indent: 8em;}
+.indent_6{text-indent: 10em;}
 
 
 

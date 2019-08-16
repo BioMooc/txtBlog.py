@@ -207,7 +207,15 @@ v0.0.7-4 fix bug: txt.js 目录单击时锚点错了一行，已经微调.
 v0.0.7-5 txt页面默认是纸质书背景
 	背景图来源: https://www.cnblogs.com/hackpig/p/8215786.html
 	颜色来源: https://maxiang.io/
+v0.0.7-6 为md增加js，自动生成顶部目录。txt.js, base.css
+	参考效果1 百度百科 https://baike.baidu.com/item/HTML/97049?fr=aladdin
+		会响应滚动位置
+		固定显示在侧边
+		github https://github.com/dodoroy/side-catalog
+	参考效果2 马克飞象 https://maxiang.io/
+		显示到底部，单击时显示出来
 #
+
 
 	
 

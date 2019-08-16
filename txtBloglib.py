@@ -42,6 +42,7 @@ def htmlReader(fpath):
 
 #markdown读取器
 #v0.1
+#v0.2 增加目录
 def markdownReader(fpath):
 	fr=open(fpath, 'r', encoding="utf8")
 	text=fr.read()
@@ -53,8 +54,11 @@ def markdownReader(fpath):
 	
 	# add style sheet
 	css='<link rel="stylesheet" type="text/css" href="/static/css/MarkDown3.css" media="all">\n'
-	tmp=css+tmp;
+	js='<script type="text/javascript" src="static/js/markdown.js"></script>\n\n'
+	tmp=css+js+tmp;
 	return tmp;
+
+
 
 #input k and id, return url_left and content, filepath
 #v0.3
