@@ -3,7 +3,8 @@
 		"title":"前沿与资料",
 		"data":
 		[
-			["项目描述", "Python001", "html"]
+			["项目描述", "Python001", "html"],
+			["txtBlog.py", "ReadMe", "markdown"]
 		]
 	},
 

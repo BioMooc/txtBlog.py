@@ -1,7 +1,7 @@
 import json,re,time,os
 from flask import escape, url_for
 import mistune
-# version 0.0.4
+# version 0.0.7-8
 
 #文本文件阅读器，input filepath, return string from the file.
 #v0.3 <h4>下添加换行，防止遮挡;
@@ -31,31 +31,46 @@ def txtReader(fpath):
 #v0.1
 def htmlReader(fpath):
 	fr=open(fpath, 'r', encoding="utf8")
-	tmp=""
-	for lineR in fr.readlines():
-		line=lineR.strip()
-		tmp+=line+"\n";
-	#关闭文件
+	tmp=fr.read();
 	fr.close()
 	return tmp;
 #
 
 #markdown读取器
 #v0.1
-#v0.2 增加目录
+#v0.2 增加top目录
+#v0.3 代码高亮
+#v0.4 左下角添加目录
 def markdownReader(fpath):
+	# read markdown
 	fr=open(fpath, 'r', encoding="utf8")
 	text=fr.read()
 	fr.close()
-	#
+	# get html from markdown
 	tmp=mistune.markdown(text, escape=False, hard_wrap=True) #'I am using **mistune markdown parser**'
 	tmp="<div class=markdown>\n"+tmp+"</div>\n"
 	#tmp="<div class=content>\n"+tmp+"</div>\n"
 	
-	# add style sheet
+	# left bottom corner contents 
+	cornerContents="""
+<div id="common_box">
+ <div id="cli_title"> Contents <b id="cli_on">+</b></div>
+ <div id="f_content" class=content></div>
+</div>
+<script type="text/javascript" src="/static/js/startMove.js"></script>\n
+"""
+	tmp+=cornerContents;#其他js在markdown.js中
+	
+	# add markdown style sheet and top contents js, left bottom corner contents.
 	css='<link rel="stylesheet" type="text/css" href="/static/css/MarkDown3.css" media="all">\n'
 	js='<script type="text/javascript" src="static/js/markdown.js"></script>\n\n'
 	tmp=css+js+tmp;
+	
+	# high light code
+	css2='<link rel="stylesheet" href="/static/css/highlight-routeros.css">\n'
+	js2='<script src="/static/js/highlight.pack.js"></script>\n\n'
+	tmp=tmp + css2+js2   + '<script>hljs.initHighlightingOnLoad();</script>';
+	
 	return tmp;
 
 

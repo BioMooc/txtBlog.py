@@ -20,6 +20,7 @@
 	border-bottom: 1px solid #d3d3d3;
 	font-size: 25px;
 	background-image: linear-gradient(to bottom,#f3f3f3 0,#e3e3e3 100%);
+	border-radius:5px;
 }
 /*标题样式h3*/
 .content h3{
@@ -175,5 +176,5 @@ wps中的淡青色:#CFE8CB (199,237,204)=#C7EDCC
 
 /*txt目录的链接样式*/
 .content a .text_menu{color:#eee; }
-.content a .text_menu span{color:#DB784D /*#009a61*/; }
+.content a .text_menu span{color:#009a61 /*#009a61 DB784D */; }
 

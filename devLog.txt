@@ -211,16 +211,19 @@ v0.0.7-6 为md增加js，自动生成顶部目录。txt.js, base.css
 	参考效果1 百度百科 https://baike.baidu.com/item/HTML/97049?fr=aladdin
 		会响应滚动位置
 		固定显示在侧边
+		sf也有类似滑动效果 https://segmentfault.com/a/1190000018084098
 		github https://github.com/dodoroy/side-catalog
 	参考效果2 马克飞象 https://maxiang.io/
 		显示到底部，单击时显示出来
+v0.0.7-7 md支持代码高亮，使用 highlight.js
+	https://github.com/andris9/highlight
+v0.0.7-8 增加左下角目录
+	样式在 base.css中;依赖 startMove.js，代码在markdown.js中；html加载在lib.py中
 #
-
-
 	
 
 todo:
-1.md 不支持代码高亮
-2.md不支持自动生成目录。
-
+1.md 不支持代码高亮 [solved v0.0.7-7]
+2.md不支持自动生成目录。[solved v0.0.7-6]
+3.不支持随意换肤
 

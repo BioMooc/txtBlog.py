@@ -17,7 +17,7 @@
 # 和记忆作斗争，是“坐家”们毕生的事业，本项目是一个简洁的文本笔记系统，就是为了管理知识，支持插入少量图片。
 # 使用Python3的flask包，尽量简化。https://flask.palletsprojects.com/en/1.1.x/
 # 顶部关键词，左侧文件名，都使用json格式的配置文件。
-# 支持html/txt格式的笔记，未来会支持markdown, ReStructuredText等;
+# 支持html/txt/markdown格式的笔记，未来会支持 ReStructuredText等;
 # 为了应付最危险的情况：python部件不再支持(5-10年内不会发生)，博客系统失灵，建议文件命名时要言简意赅、见名知意！保证human也能读懂。
 #
 
@@ -29,7 +29,8 @@
 OS: win10和linux都可以，但是需要有可用的端口号，本项目默认使用8000端口。
 
 安装python3，查看版本号
-$ python -V  ## Python 3.6.4
+$ python -V  
+## Python 3.6.4
 
 使用pip安装 flask: 
 $ pip install flask
@@ -118,14 +119,15 @@ Pyhton对json要求很严格：
 	}
 ]
 该文件的文件名，要和/data/下的文件夹同名，并在topMenu.json中出现
+是一个数组[]，数组中是对象{}，对象的title是显示到左侧的仅有分类作用的一级标题，对象的data属性是二级标题，可以点击并跳转。
+data属性也是一个数组，每个元素是一个3元素数组，第一个是页面显示用，第二项是文件名(不带路径，不带后缀名)，第三项是文件后缀名(不带点)
 
 
 
 
 
-
-(3)文件夹内是文本文件: .txt、.html
-未来会考虑支持 .markdown(.mk) //todo
+(3)文件夹内是文本文件: .txt/.html/.markdown/.md
+未来会考虑支持 rst //todo
 
 
 1)txt格式文档，符合前一行有40个=、后一行有40个-的行，会被解析成标题，并自动生成目录。
@@ -145,9 +147,10 @@ web based tutorials
 
 
 
-3)底部友情链接的更新
-链接数据是json格式的，定义在文件 footer_urls.py 中。
-链接html生成函数 get_links() 在 txtBloglib.py 中定义，并在 index.py 中执行。
+
+3)支持使用GitHub Flavored Markdown 
+纯python版的markdown解析器 mistune;
+css使用github的主要样式，颜色参考 https://segmentfault.com/a/1190000018084098
 
 
 
@@ -161,7 +164,14 @@ web based tutorials
 
 
 
-3. 如何制作皮肤？
+3. 底部友情链接的更新
+链接数据是json格式的，定义在文件 footer_urls.py 中。
+链接html生成函数 get_links() 在 txtBloglib.py 中定义，并在 index.py 中执行。
+
+
+
+
+4. 如何制作皮肤？
 css文件在 static/css/下，可尝试修改该文件。
 未来可能会支持更多可配置的外观。//todo
 /static/css/
@@ -170,7 +180,10 @@ css文件在 static/css/下，可尝试修改该文件。
 |-- MarkDown.css 是markdown的样式表;
 
 
-目前 txt 页面默认是纸质书背景。
+目前 
+- txt 页面默认是纸质书背景。
+- txt和markdown都是自动生成顶部页内目录。
+
 
 
 
