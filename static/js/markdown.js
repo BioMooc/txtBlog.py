@@ -6,9 +6,9 @@
 
 
 //======================
-//depend on startMove.js
 /**
 * name: 为左下角生成目录外框架，
+* depend on startMove.js
 * version: 0.1
 * version: 0.2 初始化时候显示在底部不动;
 */
@@ -121,6 +121,7 @@ addEvent(window, 'load', function(){
 /**
 * name: 为左下角目录响应鼠标滚动
 * version: 0.1
+* version: 0.2 考虑顶部菜单栏遮挡部分
 # 
 */
 
@@ -138,7 +139,7 @@ function highlightCurrentContent() {
 	var aA= document.querySelectorAll("a[name]");
 	//对正文的锚点进行遍历
 	for(var i=0;i<aA.length;i++){
-		if(aA[i].offsetTop<scrollTop){
+		if(aA[i].offsetTop<scrollTop+50){//考虑顶部菜单栏遮挡部分
 			//remove class cur, for 导航
 			for(var j=0;j<aSpan.length;j++){
 				aSpan[j].parentElement.parentElement.setAttribute("class","");

@@ -234,6 +234,8 @@ $ git checkout -b bug
 	v0.0.7-8-1bug: txt锚点点击bug修复
 		锚点定位被导航栏遮住了 https://blog.csdn.net/weixin_41728561/article/details/86524574
 	v0.0.7-8-2bug: markdown修正点击锚点错位一行的问题
+	v0.0.7-8-3bug: markdown修正滚动时左下角菜单定位滞后问题
+
 
 
 todo:
