@@ -234,7 +234,15 @@ $ git checkout -b bug
 	v0.0.7-8-1bug: txt锚点点击bug修复
 		锚点定位被导航栏遮住了 https://blog.csdn.net/weixin_41728561/article/details/86524574
 	v0.0.7-8-2bug: markdown修正点击锚点错位一行的问题
-	v0.0.7-8-3bug: markdown修正滚动时左下角菜单定位滞后问题
+	v0.0.7-8-3bug: markdown修正滚动时左下角菜单定位滞后一段长度问题
+	v0.0.7-8-4bug: markdown目录过长时，出现垂直滚动条；
+		调整左下角positon，从fixed改为absolute;
+		调一行的顺序，修正 static/js/startMove.js 中的timer不清零问题。
+#
+
+#
+js实现垂直滚动条 https://blog.csdn.net/qq_36818627/article/details/81608413
+
 
 
 

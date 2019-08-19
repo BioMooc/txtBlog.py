@@ -5,6 +5,32 @@
 */
 
 
+
+
+/**
+* name: 全局滚动时、窗口变化大小时，左下角固定位置
+* version: 0.1
+* 
+*/
+function fixNaveBoxPosition(){
+	var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+	var visualHeight=document.documentElement.clientHeight; //offsetHeight
+	//同步左下角窗口位置
+	var combox=$("common_box");
+	var selfHeight=combox.offsetHeight;
+	combox.style.top=scrollTop+visualHeight-selfHeight+"px";//窗口顶端滚过的高度 + 当前浏览器可见高度 - 自身盒子高度
+}
+//挂载到resize
+addEvent(window, 'resize', function(){
+	fixNaveBoxPosition();
+});
+
+
+
+
+
+
+
 //======================
 /**
 * name: 为左下角生成目录外框架，
@@ -17,22 +43,32 @@ function addCornerContentsBox() {
 	var cli_title = document.getElementById("cli_title");
 	var cli_on = document.getElementById("cli_on");//cli_title.getElementsByTagName("b")[0];
 	var flag = true, initime = null, r_len = 0;
-	var height90=parseInt(document.documentElement.clientHeight*0.9); //parseInt(getStyle(combox,"height"));
-	var width=400; //parseInt(getStyle(combox,"width"));
+	//var width=400; //parseInt(getStyle(combox,"width"));
+	var oD=$("f_content")
 	
 	cli_on.onclick = function () {
-		var oD=$("f_content")
+		var height90=parseInt(document.documentElement.clientHeight*0.9); //parseInt(getStyle(combox,"height"));
 		//console.log(flag, height90, oD.style.height,oD.offsetHeight, oD.scrollHeight, parseInt(getComputedStyle(oD,false)['height']) )
-		if(oD.scrollHeight+20<height90){
+		// 如果nav很矮，则整体高度使用最低的高度
+		if(oD.offsetHeight+20<height90){
 			height90=oD.scrollHeight+20;
 		}
+		oD.style.height = height90-30+"px";
+		
+		
 		/*如果不需要动态效果，这两句足矣
 		combox.style.right = flag?'-270px':0;
 		flag = !flag;
 		*/
-		var px_left=flag?0:(200-width);
+		var px_left=flag?0:-200;
 		var px_height=flag?height90:30;
-		startMove(combox, {"left": px_left, 'height':px_height, "width": 400})
+		combox.style.height=px_height+"px";
+		
+		// 左下角菜单伸缩动作
+		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		var visualHeight=document.documentElement.clientHeight;
+		var px_top=scrollTop+visualHeight-px_height;		
+		startMove(combox, {"left": px_left, 'top':px_top})
 		cli_on.innerHTML=flag?"-":"+";
 		//
 		flag = !flag;
@@ -40,8 +76,6 @@ function addCornerContentsBox() {
 	//加载后3秒页面自动收缩；不打扰用户，初始化静默收缩在左下角.
 	//initime = setTimeout("cli_on.click()", 100);
 }
-
-
 // 挂载函数到load事件
 addEvent(window, 'load', function(){
 	addCornerContentsBox();
@@ -80,6 +114,7 @@ function addContents(){
 			//console.log(i,tagName, text,  aH[i])
 			//oH.parentNode.insertBefore( createElement('p',{}, ''), oH);//占位置
 			oH.parentNode.insertBefore( createElement('a',{'name':i,
+				'my-data':'anchor',
 				'style':"margin-top:-1px; padding-top:1px; border:1px solid rgba(0,0,0,0.0);"
 			},), oH ); //h前添加锚点,无显示
 			
@@ -101,11 +136,9 @@ function addContents(){
 	$("f_content").getElementsByTagName("div")[0].append( oUl.cloneNode(true) );
 	// 复制节点 https://blog.csdn.net/LLL_liuhui/article/details/79978487
 	
-	
 	//3. add "正文"
 	//oContent.append( createElement('h2',{},'正文' )); //加入文档流
 }
-
 
 // 挂载函数到load事件
 addEvent(window, 'load', function(){
@@ -114,17 +147,13 @@ addEvent(window, 'load', function(){
 
 
 
-
-
-
 //======================
 /**
-* name: 为左下角目录响应鼠标滚动
+* name: 为左下角目录响应滚动，高亮当前标题；滚动左下角窗口位置
 * version: 0.1
 * version: 0.2 考虑顶部菜单栏遮挡部分
-# 
+* 
 */
-
 function highlightCurrentContent() {
 	//为了保证兼容性，这里取两个值，哪个有值取哪一个
 	//scrollTop就是触发滚轮事件时滚轮的高度
@@ -136,7 +165,8 @@ function highlightCurrentContent() {
 	var aSpan=oMenu.getElementsByTagName("span");
 	
 	//正文内容
-	var aA= document.querySelectorAll("a[name]");
+	var aA= document.querySelectorAll("a[my-data]");
+
 	//对正文的锚点进行遍历
 	for(var i=0;i<aA.length;i++){
 		if(aA[i].offsetTop<scrollTop+50){//考虑顶部菜单栏遮挡部分
@@ -150,6 +180,9 @@ function highlightCurrentContent() {
 			oA.setAttribute("class","cur")
 		}
 	}
+	
+	//固定左下角位置
+	fixNaveBoxPosition()
 }
 
 // 挂载函数到事件
