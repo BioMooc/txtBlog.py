@@ -54,10 +54,11 @@ def markdownReader(fpath):
 	# left bottom corner contents 
 	cornerContents="""
 <div id="common_box">
- <div id="cli_title"> Contents <b id="cli_on">+</b></div>
- <div id="f_content">
-	<div class=content></div>
- </div>
+	<div id="cli_title" class=title> Contents <b id="cli_on">+</b></div>
+	<div id="f_content" class=container>
+		<div class=content></div>
+		<div class="title">==This is the bottom==</div>
+	</div>
 </div>
 <script type="text/javascript" src="/static/js/startMove.js"></script>\n
 """

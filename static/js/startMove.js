@@ -1,6 +1,7 @@
 /* startMove.js 
 * name: 完美运动框架
 * version: v0.2
+* version: v0.3 修正flag标签的位置
 * 注释: https://github.com/race616/startmove/blob/master/startMove.js
 */
 
@@ -15,9 +16,9 @@ function getStyle(obj,attr){
 }
 
 function startMove(obj,json,fn){
-	var flag = true;
 	clearInterval(obj.timer);
 	obj.timer = setInterval(function(){
+		var flag = true;
 		for(var attr in json){
 			// 1.取当前的值
 			var iCur = 0;
@@ -32,8 +33,7 @@ function startMove(obj,json,fn){
 			iSpeed = iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
 
 			// 3.检测停止
-			if(iCur != json[attr])  //只要有没达到的 flag==false
-			{
+			if(iCur != json[attr]){  //只要有没达到的 flag==false
 				flag = false;
 			}
 
