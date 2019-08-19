@@ -231,9 +231,9 @@ v0.0.7-8 增加左下角目录，能响应滚动
 	发现bug2: v0.0.7-4 调好的txt页，单击目录到达不起作用了，而且错的更远了。
 #
 $ git checkout -b bug
-	v0.0.7-8-1bug: 锚点点击bug修复
+	v0.0.7-8-1bug: txt锚点点击bug修复
 		锚点定位被导航栏遮住了 https://blog.csdn.net/weixin_41728561/article/details/86524574
-
+	v0.0.7-8-2bug: markdown修正点击锚点错位一行的问题
 
 
 todo:

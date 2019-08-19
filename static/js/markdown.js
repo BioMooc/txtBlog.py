@@ -53,6 +53,7 @@ addEvent(window, 'load', function(){
 /**
 * name: 为顶部生成目录
 * version: 0.1
+* version: 0.2 修正点击锚点错位一行的问题
 # 
 */
 function addContents(){
@@ -77,8 +78,10 @@ function addContents(){
 			// if h tag is empty, do nothing
 			//1. add anchor
 			//console.log(i,tagName, text,  aH[i])
-			oH.parentNode.insertBefore( createElement('p',{}, ''), oH);//占位置
-			oH.parentNode.insertBefore( createElement('a',{'name':i}, ''), oH.previousSibling ); //h前一个元素前加锚点,无显示
+			//oH.parentNode.insertBefore( createElement('p',{}, ''), oH);//占位置
+			oH.parentNode.insertBefore( createElement('a',{'name':i,
+				'style':"margin-top:-1px; padding-top:1px; border:1px solid rgba(0,0,0,0.0);"
+			},), oH ); //h前添加锚点,无显示
 			
 			//2. show in the contents
 			var innerSpan = createElement('span',{},text );
