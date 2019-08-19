@@ -55,7 +55,9 @@ def markdownReader(fpath):
 	cornerContents="""
 <div id="common_box">
  <div id="cli_title"> Contents <b id="cli_on">+</b></div>
- <div id="f_content" class=content></div>
+ <div id="f_content">
+	<div class=content></div>
+ </div>
 </div>
 <script type="text/javascript" src="/static/js/startMove.js"></script>\n
 """

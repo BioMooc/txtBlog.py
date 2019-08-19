@@ -217,13 +217,27 @@ v0.0.7-6 为md增加js，自动生成顶部目录。txt.js, base.css
 		显示到底部，单击时显示出来
 v0.0.7-7 md支持代码高亮，使用 highlight.js
 	https://github.com/andris9/highlight
-v0.0.7-8 增加左下角目录
+v0.0.7-8 增加左下角目录，能响应滚动
 	样式在 base.css中;依赖 startMove.js，代码在markdown.js中；html加载在lib.py中
+	鼠标滚轮响应?
+		//添加属性cur，样式确实有变化
+		oMenu=$("f_content")
+		aSpan=oMenu.getElementsByTagName("span")
+		//aSpan[4]
+		oA=aSpan[2].parentElement.parentElement
+		oA.setAttribute("class","cur")
+		//怎么确定各个锚点所在位置？当前窗口所在位置？
+	有bug: 目录过长时，左下角目录看不到后半段。
+	发现bug: v0.0.7-4 调好的txt页，单击目录到达不起作用了，而且错的更远了。
 #
-	
+
+
+
+
 
 todo:
 1.md 不支持代码高亮 [solved v0.0.7-7]
 2.md不支持自动生成目录。[solved v0.0.7-6]
 3.不支持随意换肤
+4.不能随着浏览改变目录的样式。
 

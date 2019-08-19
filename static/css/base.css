@@ -380,7 +380,9 @@ usage:
 #cli_title b{padding: 8px 10px; 
 	cursor:pointer;
 }
-
+#common_box div.content{
+	/*overflow: scroll;/*当内部元素超出外部元素的高度并且外部overflow: scroll的时候 外部会scroll   https://www.cnblogs.com/wenruo/p/9754576.html*/
+}
 
 
 

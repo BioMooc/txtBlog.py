@@ -183,7 +183,7 @@ css文件在 static/css/下，可尝试修改该文件。
 目前 
 - txt 页面默认是纸质书背景。
 - txt和markdown都是自动生成顶部页内目录。
-
+- markdown页左下角有可伸缩的目录;
 
 
 

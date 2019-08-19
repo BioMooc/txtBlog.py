@@ -177,4 +177,5 @@ wps中的淡青色:#CFE8CB (199,237,204)=#C7EDCC
 /*txt目录的链接样式*/
 .content a .text_menu{color:#eee; }
 .content a .text_menu span{color:#009a61 /*#009a61 DB784D */; }
-
+/*当前行*/
+.content a.cur .text_menu {color:#009a61; font-weight:bold;}

@@ -8,11 +8,11 @@
 //======================
 //depend on startMove.js
 /**
-* name: 为左下角生成目录
+* name: 为左下角生成目录外框架，
 * version: 0.1
 * version: 0.2 初始化时候显示在底部不动;
 */
-function addCornerContents() {
+function addCornerContentsBox() {
 	var combox = document.getElementById("common_box");
 	var cli_title = document.getElementById("cli_title");
 	var cli_on = document.getElementById("cli_on");//cli_title.getElementsByTagName("b")[0];
@@ -21,7 +21,11 @@ function addCornerContents() {
 	var width=400; //parseInt(getStyle(combox,"width"));
 	
 	cli_on.onclick = function () {
-		//console.log(flag, height90, width)
+		var oD=$("f_content")
+		//console.log(flag, height90, oD.style.height,oD.offsetHeight, oD.scrollHeight, parseInt(getComputedStyle(oD,false)['height']) )
+		if(oD.scrollHeight+20<height90){
+			height90=oD.scrollHeight+20;
+		}
 		/*如果不需要动态效果，这两句足矣
 		combox.style.right = flag?'-270px':0;
 		flag = !flag;
@@ -40,9 +44,8 @@ function addCornerContents() {
 
 // 挂载函数到load事件
 addEvent(window, 'load', function(){
-	addCornerContents();
+	addCornerContentsBox();
 });
-
 
 
 
@@ -92,7 +95,7 @@ function addContents(){
 	oContent.append( oUl); //加入文档流
 	
 	//3.加入左下角菜单中
-	$("f_content").append( oUl.cloneNode(true) );
+	$("f_content").getElementsByTagName("div")[0].append( oUl.cloneNode(true) );
 	// 复制节点 https://blog.csdn.net/LLL_liuhui/article/details/79978487
 	
 	
@@ -108,3 +111,44 @@ addEvent(window, 'load', function(){
 
 
 
+
+
+
+//======================
+/**
+* name: 为左下角目录响应鼠标滚动
+* version: 0.1
+# 
+*/
+
+function highlightCurrentContent() {
+	//为了保证兼容性，这里取两个值，哪个有值取哪一个
+	//scrollTop就是触发滚轮事件时滚轮的高度
+	var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+	//console.log("滚动距离" + scrollTop);
+	//开始循环干活了
+	//目录内容
+	var oMenu=$('f_content');
+	var aSpan=oMenu.getElementsByTagName("span");
+	
+	//正文内容
+	var aA= document.querySelectorAll("a[name]");
+	//对正文的锚点进行遍历
+	for(var i=0;i<aA.length;i++){
+		if(aA[i].offsetTop<scrollTop){
+			//remove class cur, for 导航
+			for(var j=0;j<aSpan.length;j++){
+				aSpan[j].parentElement.parentElement.setAttribute("class","");
+			}
+			
+			//add class cur, for 导航
+			var oA=aSpan[i].parentElement.parentElement
+			oA.setAttribute("class","cur")
+		}
+	}
+}
+
+// 挂载函数到事件
+addEvent(window, 'scroll', function(){
+	highlightCurrentContent();
+});
