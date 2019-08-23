@@ -4,6 +4,7 @@
 
 
 ## 测试代码高亮效果
+
 ### Python web
 快速启动一个服务器，可以使用flask包:
 ```Python
@@ -41,3 +42,29 @@ int main(){
 }
 // hello, C world! 10
 ```
+
+
+
+
+
+### LaTex
+
+txtBlog.py uses MathJax.js([cnd](https://cdnjs.com/libraries/mathjax), [github](https://codeload.github.com/mathjax/MathJax/zip/2.7.5), [docs](https://mistune.readthedocs.io/en/latest/)) to render LaTeX inside html/markdown(some). Just put your LaTeX math inside `$$`.
+
+
+$$c = \sqrt{a^2 + b^2}$$
+
+$\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$。
+
+$\varGamma(x)=\frac{\int_{\alpha}^{\beta}g(t)(x-t)^2\text{d}t}{\phi(x)\sum_{i=0}^{N-1}\omega_i}\tag{2}$
+
+$$
+\varGamma(x)=\frac{\int_{\alpha}^{\beta}g(t)(x-t)^2\text{d}t}{\phi(x)\sum_{i=0}^{N-1}\omega_i}\tag{2}
+$$
+
+
+$$\alpha+\beta=\gamma$$
+
+
+$$\int_{0}^{1}f(x)dx \sum_{1}^{2}\int_{0}^{1}f(x)dx \sum_{1}^{2}\int_{0}^{1}f(x)dx \sum_{1}^{2}\int_{0}^{1}f(x)dx \sum_{1}^{2}\int_{0}^{1}f(x)dx \sum_{1}^{2}\int_{0}^{1}f(x)dx \sum_{1}^{2}\int_{0}^{1}f(x)dx \sum_{1}^{2}\int_{0}^{1}f(x)dx \sum_{1}^{2}\int_{0}^{1}f(x)dx \sum_{1}^{2}\int_{0}^{1}f(x)dx \sum_{1}^{2}$$
+

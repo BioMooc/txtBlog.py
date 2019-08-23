@@ -239,9 +239,13 @@ $ git checkout -b bug
 		调整左下角positon，从fixed改为absolute;
 		调一行的顺序，修正 static/js/startMove.js 中的timer不清零问题。
 #
+v0.0.7-9 (merge to master) markdown左下角目录过长时出y进度条;修正txt锚点定位错位
 
-#
-js实现垂直滚动条 https://blog.csdn.net/qq_36818627/article/details/81608413
+# js实现垂直滚动条 https://blog.csdn.net/qq_36818627/article/details/81608413
+v0.0.8 txt皮肤可配置; markdown页面支持LaTex公式显示了。
+	md: //todo 不完全支持行内LaTex显示$，只支持块状显示$$。显示太慢了，html就先不添加了。
+	感觉txt页面太花哨，还原回素雅界面。增加了几个txt皮肤，可以配置皮肤config/conf.ini。
+
 
 
 

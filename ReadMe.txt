@@ -178,6 +178,7 @@ css文件在 static/css/下，可尝试修改该文件。
 |-- base.css 是基础样式，不建议改动;
 |-- main.css 是html和txt页面的样式，可以尝试更改为自己喜欢的颜色;
 |-- MarkDown.css 是markdown的样式表;
+|-- txt.css 是txt文件的样式表，支持在/config/conf.ini中自定义皮肤样式
 
 
 目前 

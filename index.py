@@ -2,14 +2,15 @@ from flask import Flask, escape,request, url_for,render_template,send_from_direc
 from txtBloglib import *
 from footer_urls import *
 
-app = Flask(__name__)
 
+app = Flask(__name__)
 
 # when browse the root /, jump to hello page immediately.
 @app.route('/')
 def index():
 	url=url_for('hello') #第一个参数是函数名，不是路由
 	return '<meta http-equiv="refresh" content="0;url='+url+'">'
+#
 
 
 #1.Get paras from url: k and id, and response almost all the requests.

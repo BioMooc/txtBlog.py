@@ -1,13 +1,81 @@
 import json,re,time,os
 from flask import escape, url_for
-import mistune
+#import mistune
+import configparser,os
 # version 0.0.7-8
+
+
+
+
+
+
+#import re
+from mistune import Renderer, Markdown, InlineLexer
+# todo 单引号括起来的还没有处理？
+# define new sub class
+#让mistune不后台处理$$和$$之间的LaTex代码，交给前台的js处理成数学公式
+class LaTexRenderer(Renderer):
+    #def LaTex(self, alt, link):
+    def LaTex(self, text):
+        return '$$%s$$' % (text)
+
+class LaTexInlineLexer(InlineLexer):
+    def enable_LaTex(self):
+        # add LaTex rules
+        self.rules.LaTex = re.compile(
+            r'\$\$'                   # $$ 头
+            r'([\s\S]+?)'   # *** 中间
+            r'\$\$(?!\])'             # $$ 尾
+        )
+        # Add LaTex parser to default rules
+        # you can insert it some place you like
+        # but place matters, maybe 3 is not good
+        self.default_rules.insert(3, 'LaTex')
+
+    def output_LaTex(self, m):
+        text = m.group(1)
+        #alt, link = text.split('|')
+        # you can create an custom render
+        # you can also return the html if you like
+        #return self.renderer.LaTex(alt, link)
+        return self.renderer.LaTex(text)
+# the end of sub class
+# 跳过LaTex片段的markdown to html parser mistune子类
+def md2html(md):
+	renderer = LaTexRenderer()
+	inline = LaTexInlineLexer(renderer)
+	# enable the feature
+	inline.enable_LaTex()
+	markdown = Markdown(renderer, inline=inline)
+	return markdown(md)
+#
+
+
+
+
+
+
+
+# read configure file
+def getConf(section, item): 
+	base_dir = str(os.path.dirname(__file__))
+	base_dir = base_dir.replace('\\', '/')
+	file_path = base_dir + "./config/conf.ini"
+	#return base_dir;
+	#print("file_path=", file_path);
+	
+	cf = configparser.ConfigParser()   # configparser类来读取config文件
+	cf.read(file_path)
+
+	return cf.get(section, item); 
+
 
 #文本文件阅读器，input filepath, return string from the file.
 #v0.3 <h4>下添加换行，防止遮挡;
 #v0.4 对尖括号转码
 #v0.5 添加纸质背景
-def txtReader(fpath):
+#v0.6 分离txt.css
+def txtReader(fpath,txtStyle="ubuntu1"):
 	fr=open(fpath, 'r', encoding="utf8")
 	tmp=''
 	for lineR in fr.readlines():
@@ -24,15 +92,19 @@ def txtReader(fpath):
 			tmp+=line+"\n";
 	#关闭文件
 	fr.close()
+	css='<link rel="stylesheet" type="text/css" href="/static/css/txt.css" media="all">\n'
 	js='<script type="text/javascript" src="static/js/txt.js"></script>\n\n'
-	return js+"<div class='content'><pre class=ubuntu1>" + tmp + "</pre></div>\n";
+	#获取配置风格
+	txtStyle=getConf('style','txt');
+	
+	return css+js+"<div class='content'><pre class="+txtStyle+">" + tmp + "</pre></div>\n";
 
 #html读取器
 #v0.1
 def htmlReader(fpath):
 	fr=open(fpath, 'r', encoding="utf8")
 	tmp=fr.read();
-	fr.close()
+	fr.close();
 	return tmp;
 #
 
@@ -41,13 +113,15 @@ def htmlReader(fpath):
 #v0.2 增加top目录
 #v0.3 代码高亮
 #v0.4 左下角添加目录
+#v0.5 增加LaTex支持，依赖MathJax.js，不好用。因为mistune解析markdown时转义_为<i>，导致带有_的公式转换失败
 def markdownReader(fpath):
 	# read markdown
 	fr=open(fpath, 'r', encoding="utf8")
 	text=fr.read()
 	fr.close()
 	# get html from markdown
-	tmp=mistune.markdown(text, escape=False, hard_wrap=True) #'I am using **mistune markdown parser**'
+	#tmp=mistune.markdown(text, escape=False, hard_wrap=True) #'I am using **mistune markdown parser**'
+	tmp=md2html(text) #'I am using **mistune markdown parser**'  , escape=False, hard_wrap=True
 	tmp="<div class=markdown>\n"+tmp+"</div>\n"
 	#tmp="<div class=content>\n"+tmp+"</div>\n"
 	
@@ -69,10 +143,19 @@ def markdownReader(fpath):
 	js='<script type="text/javascript" src="static/js/markdown.js"></script>\n\n'
 	tmp=css+js+tmp;
 	
+	
+	
+	
 	# high light code
 	css2='<link rel="stylesheet" href="/static/css/highlight-routeros.css">\n'
 	js2='<script src="/static/js/highlight.pack.js"></script>\n\n'
 	tmp=tmp + css2+js2   + '<script>hljs.initHighlightingOnLoad();</script>';
+	
+	# LaTex
+	#js3='<script src="/static/js/MathJax.js"></script>\n';
+	js3='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>';
+	js3+='<script src="/static/js/showLaTex.js"></script>\n\n';
+	tmp=tmp+js3;
 	
 	return tmp;
 

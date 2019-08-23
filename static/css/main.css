@@ -83,52 +83,11 @@
 
 /*名人名言*/
 .content pre.saying{box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 5px 0px inset;}
-.content .redBg{background: #C10000;    color: #eee;}
+.content .redBg{background: #C10000; color: #eee;}
 
 
 
 
-
-
-
-/* color refer: https://maxiang.io/ 
-深棕色背景 #36312C, 
-- 灰黄色(大多数文字) #EBD1B7,
-- 亮黄色文字(粗标题)#F8BB39, 
-- 暗黄色文字(强调) #DB784D,
-- 亮青色(代码) #95CC5E,
-- 暗青色(链接) rgba(139,158,177,0.8);
-
-保护眼睛的背景颜色
-米黄色:#FFFFF0
-wps中的淡青色:#CFE8CB (199,237,204)=#C7EDCC
-*/
-
-/*ubuntu代码显示风格1*/
-.content pre.ubuntu1{ font-size: 15px;	border-radius: 10px; /* background-color:#C7EDCC;*/
-	background: url(/static/images/bg_coffee.gif) left top;
-	font-family:Consolas,"Andale Mono", monospace;}
-.content pre.ubuntu1 hr.top{ height:40px; border:0;margin-top:50px; /*background-color:#3da9f7;*/}
-.content pre.ubuntu1 hr.under{	border:0; /*border-bottom:1px #3da9f7 dashed;	height:10px;*/}
-.content pre.ubuntu1 h4{font-size:20px;
-    margin: -30px -10px 0 -30px;
-	/*margin-top: -30px; 使用负边距拉近和顶部的距离
-	bisque;
-	color:#A5D75C; 草青色
-	#AA7A53 暗黄色,
-    background: #fff;
-    box-shadow: 0 0 15px 0 rgba(0,0,0,0.3);
-	*/
-
-	background: #36312C;
-	color: #F8BB39;
-	
-    padding: 10px;
-	box-shadow: 0 1px 5px rgba(0,0,0,0.8),0 -1px 5px white;
-}
-.content pre.ubuntu1 a.smallA{ color:#aaa;
-	position: relative; /*top: -30px;*/left:10px;
-}
 
 
 
