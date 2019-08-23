@@ -25,6 +25,8 @@ def hello():
 
 	#get leftMenu and content html
 	rs=getData(kw,id)
+	if len(rs)==0:
+		return render_template('page_not_found.html');
 
 	#bottom links html, defined in footer_urls.py
 	footer='友情链接[IT Tools]: '+get_links(footer_urls["links_IT_tools"]);

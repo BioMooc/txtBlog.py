@@ -245,6 +245,8 @@ v0.0.7-9 (merge to master) markdown左下角目录过长时出y进度条;修正t
 v0.0.8 txt皮肤可配置; markdown页面支持LaTex公式显示了。
 	md: //todo 不完全支持行内LaTex显示$，只支持块状显示$$。显示太慢了，html就先不添加了。
 	感觉txt页面太花哨，还原回素雅界面。增加了几个txt皮肤，可以配置皮肤config/conf.ini。
+v0.0.8-2 config/conf.ini中设置，默认不开启md的LaTex解析，提高速度。
+	用md写文档。
 
 
 
@@ -253,6 +255,6 @@ v0.0.8 txt皮肤可配置; markdown页面支持LaTex公式显示了。
 todo:
 1.md 不支持代码高亮 [solved v0.0.7-7]
 2.md不支持自动生成目录。[solved v0.0.7-6]
-3.不支持随意换肤
+3.不支持随意换肤 [solved v0.0.8, txt file]
 4.不能随着浏览改变目录的样式。
 

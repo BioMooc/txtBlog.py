@@ -2,7 +2,7 @@
 # project name: txtBlog.py is the python3 version of txtBlog 
 # desc: [知识管理]A simple yet powerful blog system for reading and organizing txt files.
 # desc2: Pyhton3编写的、基于文件的文本笔记管理系统，简捷高效，可用于管理知识。
-# version: 0.0.7-4
+# version: 0.0.8
 # github: https://github.com/DawnEve/txtBlog.py
 # appearence: https://github.com/DawnEve/txtBlog
 #
@@ -79,7 +79,8 @@ $ python index.py
 推荐: Python_001.txt, Python-001.txt, PythonBasic.txt, 
 
 
-1. 所有可自由修改的部分，主要集中在data/文件夹中。
+1. 文件结构
+所有可自由修改的部分，主要集中在data/文件夹中。
 /data/
  |- topMenu.json
  |- R.json
@@ -103,6 +104,7 @@ $ python index.py
 Pyhton对json要求很严格： 
 	- 最后一个元素后不能出现逗号！否则报错。
 	- 键值对中，键要用双引号，值如果是字符串也要用双引号。
+	- json中不能出现注释！相比js中的json，太可悲了。
 
 
 
@@ -130,11 +132,12 @@ data属性也是一个数组，每个元素是一个3元素数组，第一个是
 未来会考虑支持 rst //todo
 
 
-1)txt格式文档，符合前一行有40个=、后一行有40个-的行，会被解析成标题，并自动生成目录。
+1)txt格式文档，符合前一行有40个=、后一行有40个-的行，会被解析成标题，并自动生成顶部目录。
 如
 ========================================
 web based tutorials
 ----------------------------------------
+
 
 2)html的编写应该写到<div class=content></div>中，中间支持<h2>,<h3>,<p>等标签及预定义格式；
 更多html标签的含义和用法请参考网络资源，如 https://www.runoob.com/html/html-tutorial.html
@@ -149,14 +152,19 @@ web based tutorials
 
 
 3)支持使用GitHub Flavored Markdown 
-纯python版的markdown解析器 mistune;
-css使用github的主要样式，颜色参考 https://segmentfault.com/a/1190000018084098
+- 纯python版的markdown解析器 mistune;
+- css使用github的主要样式，颜色参考 https://segmentfault.com/a/1190000018084098
+- 支持代码高亮(依赖 highlight.js)；
+- 支持LaTex(依赖 MathJax.js, 在线cdn，加载很慢) ，默认不开启；
+
 
 
 
 
 
 2. 更新时要注意文本文件和json目录的同步！防止互相被孤立！
+也就是说改文件名时，要同时在对应的json目录中修改，否则系统web页看不到该文件;
+删除文件时，要在对应的json里删除该行;
 {现在只能全手动同步，或者看到报错再更新至同步。}
 
 
@@ -164,27 +172,45 @@ css使用github的主要样式，颜色参考 https://segmentfault.com/a/1190000
 
 
 
+
 3. 底部友情链接的更新
-链接数据是json格式的，定义在文件 footer_urls.py 中。
-链接html生成函数 get_links() 在 txtBloglib.py 中定义，并在 index.py 中执行。
+链接数据是json格式的，定义在文件 /footer_urls.py 中。
+链接html生成函数 get_links() 在 /txtBloglib.py 中定义，并在 /index.py 中执行。
+
 
 
 
 
 4. 如何制作皮肤？
-css文件在 static/css/下，可尝试修改该文件。
+
+目前 
+- txt 页面默认是极简风格。
+- txt和markdown都是自动生成顶部页内目录。
+- markdown页左下角有可伸缩的目录，并响应鼠标滚轮高亮当前目录；
+
+
+(1)css文件在 static/css/下，可尝试修改该文件。
 未来可能会支持更多可配置的外观。//todo
 /static/css/
 |-- base.css 是基础样式，不建议改动;
 |-- main.css 是html和txt页面的样式，可以尝试更改为自己喜欢的颜色;
 |-- MarkDown.css 是markdown的样式表;
-|-- txt.css 是txt文件的样式表，支持在/config/conf.ini中自定义皮肤样式
+|-- txt.css 是txt文件的样式表，支持在/config/conf.ini中指定皮肤样式
 
 
-目前 
-- txt 页面默认是纸质书背景。
-- txt和markdown都是自动生成顶部页内目录。
-- markdown页左下角有可伸缩的目录;
+(2)自定义txt皮肤，就是在/static/css/txt.css末尾添加css代码，格式模仿前几个即可。
+
+
+
+todo:
+1. 自由切换 data 文件夹的位置，这样一个博客系统，就可以对应多个内容部分了。
+data dir -> shelf;
+top menu -> book;
+left mune -> chapter;
+top contents -> headers;
+
+
+2. 全站静态化，这样就可以放到github上；
 
 
 

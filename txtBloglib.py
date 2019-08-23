@@ -57,6 +57,7 @@ def md2html(md):
 
 
 # read configure file
+# v0.1 没有该值怎么办？
 def getConf(section, item): 
 	base_dir = str(os.path.dirname(__file__))
 	base_dir = base_dir.replace('\\', '/')
@@ -74,7 +75,7 @@ def getConf(section, item):
 #v0.3 <h4>下添加换行，防止遮挡;
 #v0.4 对尖括号转码
 #v0.5 添加纸质背景
-#v0.6 分离txt.css
+#v0.6 分离txt.css，支持在config/conf.ini配置文件中切换皮肤
 def txtReader(fpath,txtStyle="ubuntu1"):
 	fr=open(fpath, 'r', encoding="utf8")
 	tmp=''
@@ -114,12 +115,13 @@ def htmlReader(fpath):
 #v0.3 代码高亮
 #v0.4 左下角添加目录
 #v0.5 增加LaTex支持，依赖MathJax.js，不好用。因为mistune解析markdown时转义_为<i>，导致带有_的公式转换失败
+#v0.6 LaTex根据配置文件，决定是否加载
 def markdownReader(fpath):
 	# read markdown
 	fr=open(fpath, 'r', encoding="utf8")
 	text=fr.read()
 	fr.close()
-	# get html from markdown
+	# markdown to html
 	#tmp=mistune.markdown(text, escape=False, hard_wrap=True) #'I am using **mistune markdown parser**'
 	tmp=md2html(text) #'I am using **mistune markdown parser**'  , escape=False, hard_wrap=True
 	tmp="<div class=markdown>\n"+tmp+"</div>\n"
@@ -136,15 +138,12 @@ def markdownReader(fpath):
 </div>
 <script type="text/javascript" src="/static/js/startMove.js"></script>\n
 """
-	tmp+=cornerContents;#其他js在markdown.js中
+	tmp+=cornerContents;#这个框架的内容由js在markdown.js中填充
 	
 	# add markdown style sheet and top contents js, left bottom corner contents.
 	css='<link rel="stylesheet" type="text/css" href="/static/css/MarkDown3.css" media="all">\n'
 	js='<script type="text/javascript" src="static/js/markdown.js"></script>\n\n'
 	tmp=css+js+tmp;
-	
-	
-	
 	
 	# high light code
 	css2='<link rel="stylesheet" href="/static/css/highlight-routeros.css">\n'
@@ -155,7 +154,8 @@ def markdownReader(fpath):
 	#js3='<script src="/static/js/MathJax.js"></script>\n';
 	js3='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>';
 	js3+='<script src="/static/js/showLaTex.js"></script>\n\n';
-	tmp=tmp+js3;
+	if getConf("function","LaTex")=="on":
+		tmp=tmp+js3;
 	
 	return tmp;
 
@@ -170,9 +170,13 @@ def getData(k,id):
 	n1=int(arr[1])
 
 	#2.解析json文件获取左侧目录，和文件名字
-	load_f=open("data/"+k+".json",'r',encoding="utf8")
 	#读取json
-	menus = json.load(load_f)
+	fname="data/"+k+".json";
+	if not os.path.isfile(fname):
+		return ();
+	load_f=open(fname,'r',encoding="utf8")
+	menus = json.load(load_f);
+	load_f.close();
 
 	#凑出来文件路径
 	menuCur =  menus[n0]["data"][n1]
@@ -227,9 +231,10 @@ def getData(k,id):
 #顶部菜单生成
 #v0.2
 def getTopMenu(k):
-	load_f=open("data/topMenu.json",'r',encoding="utf8")
 	#读取json
-	menus = json.load(load_f)
+	load_f=open("data/topMenu.json",'r',encoding="utf8")
+	menus = json.load(load_f);
+	load_f.close();
 
 	tmp=""
 	for i in range(len(menus)):
