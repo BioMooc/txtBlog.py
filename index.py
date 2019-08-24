@@ -25,6 +25,9 @@ def hello():
 
 	#get leftMenu and content html
 	rs=getData(kw,id)
+	if(len(rs)<3):
+		return render_template('page_not_found.html',info=rs[1])
+	#
 	if len(rs)==0:
 		return render_template('page_not_found.html');
 

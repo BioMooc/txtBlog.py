@@ -202,6 +202,23 @@ web based tutorials
 
 
 
+
+
+
+
+
+5.【还没有实现】 如何全站静态化？//todo 
+$ pip install Frozen-Flask
+$ python index.py build
+
+
+
+
+
+
+
+
+
 todo:
 1. 自由切换 data 文件夹的位置，这样一个博客系统，就可以对应多个内容部分了。
 data dir -> shelf;

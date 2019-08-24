@@ -173,7 +173,8 @@ def getData(k,id):
 	#读取json
 	fname="data/"+k+".json";
 	if not os.path.isfile(fname):
-		return ();
+		return (0, fname + " not found!"); # 响应找不到目录.json错误
+	#
 	load_f=open(fname,'r',encoding="utf8")
 	menus = json.load(load_f);
 	load_f.close();

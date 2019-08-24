@@ -247,6 +247,8 @@ v0.0.8 txt皮肤可配置; markdown页面支持LaTex公式显示了。
 	感觉txt页面太花哨，还原回素雅界面。增加了几个txt皮肤，可以配置皮肤config/conf.ini。
 v0.0.8-2 config/conf.ini中设置，默认不开启md的LaTex解析，提高速度。
 	用md写文档。
+v0.0.8-3 完善目录.json不存在的主动报错。
+
 
 
 
@@ -257,4 +259,8 @@ todo:
 2.md不支持自动生成目录。[solved v0.0.7-6]
 3.不支持随意换肤 [solved v0.0.8, txt file]
 4.不能随着浏览改变目录的样式。
+5.全站静态化如何做?
+	依赖: flask_frozen: 
+		https://pythonhosted.org/Frozen-Flask/
+		https://blog.csdn.net/zt_706/article/details/11476527
 
