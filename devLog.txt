@@ -248,8 +248,10 @@ v0.0.8 txt皮肤可配置; markdown页面支持LaTex公式显示了。
 v0.0.8-2 config/conf.ini中设置，默认不开启md的LaTex解析，提高速度。
 	用md写文档。
 v0.0.8-3 完善目录.json不存在的主动报错。
-
-
+v0.0.8-4 为英语页面新增名人名言插件，播放英语句子。
+	使用插件 motto.js, 依赖 startMove_OOP.js, 模拟了粗糙的定时器暂停功能：
+		就是在大定时器内微调条件，让大定时器内的if不满足无法执行，套用小定时器内一段时间后改条件，让大定时器能正常执行。
+#
 
 
 
@@ -263,4 +265,6 @@ todo:
 	依赖: flask_frozen: 
 		https://pythonhosted.org/Frozen-Flask/
 		https://blog.csdn.net/zt_706/article/details/11476527
+6.增加不公开内容，就是根据IP地址来源设置可见范围。
+
 

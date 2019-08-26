@@ -160,6 +160,27 @@ border-bottom:1px #3da9f7 dashed;	height:10px;
 
 
 
+/*markLight 马克飞象浅色  begin https://maxiang.io/ */
+.content pre.markLight hr.top{ height:40px; border:0;margin-top:50px;}
+.content pre.markLight hr.under{border:0;}
+.content pre.markLight{ font-size: 15px;	border-radius: 10px; font-family:Consolas,"Andale Mono", monospace;
+	color:#000;
+}
+.content pre.markLight h4{font-size:20px; margin: -30px -10px 0 -30px; padding: 10px;
+    background: rgba(0,0,0,0.93);
+	color:rgba(139,158,177,0.8);
+	
+	border-radius: 5px;
+}
+.content pre.markLight a.smallA{ color:#aaa;
+	position: relative; left:10px;
+}
+/*markLight 马克飞象浅色  end */
+
+
+
+
+
 
 
 /*softGreen 护眼柔和色  begin */
@@ -184,7 +205,7 @@ border-bottom:1px #3da9f7 dashed;	height:10px;
 
 
 
-/*wiki wiki style begin  https://www.w3.org/wiki/Math_Tools#Itranslator_from_tex_latex_to_mathml */
+/*wiki style begin  https://www.w3.org/wiki/Math_Tools#Itranslator_from_tex_latex_to_mathml */
 .content pre.wiki hr.top{ height:40px; border:0;margin-top:50px;}
 .content pre.wiki hr.under{	border:0;}
 .content pre.wiki{ font-size: 15px;	border-radius: 10px; font-family:Consolas,"Andale Mono", monospace;
@@ -201,7 +222,7 @@ border-bottom:1px #3da9f7 dashed;	height:10px;
 .content pre.wiki a.smallA{ color:#aaa;
 	position: relative; /*top: -30px;*/left:10px;
 }
-/*wiki wiki style end */
+/*wiki style end */
 
 
 

@@ -225,6 +225,10 @@ def getData(k,id):
 		else: #txt
 			content=txtReader(filepath)
 
+	#如果是英语频道，则新增底部英语随机句子。
+	if k=="English":
+		content+='\n<script src="/static/js/startMove_OOP.js"></script>\n<script src="/static/js/motto.js"></script>\n';
+
 	return (url_left, content,filepath.replace("data/",""), lastModified,suffix)
 	#          0        1       2                              3           4
 
