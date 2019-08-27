@@ -17,6 +17,7 @@ motto_Plugin.run([100 ,30], document.getElementsByClassName("motto")[1]);
 			"身体是革命的本钱。",
 			"千里之行，始于足下。",
 			"子曰：逝者如斯夫，不舍昼夜。",
+			"如果有一天我好运来临，那一定是我努力所得，并非上天眷顾。",
 			"The future belongs to those who believe in the beauty of their dreams.",
 			//"Some 5,000 red-winged blackbirds, European starlings, common grackles and brown-headed cowbirds suffered blunt-force trauma after colliding with cars, trees and buildings, an ornithologist from the Arkansas Game and Fish Commission would tell National Geographic. //[熟词生义] game. 猎物",
 		],
