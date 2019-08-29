@@ -94,7 +94,7 @@ def txtReader(fpath,txtStyle="ubuntu1"):
 	#关闭文件
 	fr.close()
 	css='<link rel="stylesheet" type="text/css" href="/static/css/txt.css" media="all">\n'
-	js='<script type="text/javascript" src="static/js/txt.js"></script>\n\n'
+	js='<script type="text/javascript" src="/static/js/txt.js"></script>\n\n'
 	#获取配置风格
 	txtStyle=getConf('style','txt');
 	
@@ -142,7 +142,7 @@ def markdownReader(fpath):
 	
 	# add markdown style sheet and top contents js, left bottom corner contents.
 	css='<link rel="stylesheet" type="text/css" href="/static/css/MarkDown3.css" media="all">\n'
-	js='<script type="text/javascript" src="static/js/markdown.js"></script>\n\n'
+	js='<script type="text/javascript" src="/static/js/markdown.js"></script>\n\n'
 	tmp=css+js+tmp;
 	
 	# high light code
