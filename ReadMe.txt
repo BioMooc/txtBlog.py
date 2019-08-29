@@ -6,7 +6,7 @@
 # github: https://github.com/DawnEve/txtBlog.py
 # appearence: https://github.com/DawnEve/txtBlog
 #
-# local test url: http://blog2.163.com:8000/index.py
+# local test url: http://blog2.163.com:8000/
 # local dir:G:\xampp\htdocs\163
 ################################
 
@@ -211,8 +211,7 @@ web based tutorials
 $ pip install Frozen-Flask
 $ python index.py build
 
-
-
+url已经静态化风格了。
 
 
 
@@ -235,3 +234,8 @@ top contents -> headers;
 ################################
 如何升级
 只需要把自己的data/文件夹覆盖新版本中的data/文件夹即可。
+
+
+
+彩蛋：
+English项目下添加菜单：底部名人名言插件，刷新随机展示一条，会周期性滚动。
