@@ -80,7 +80,9 @@ def txtReader(fpath,txtStyle="ubuntu1"):
 	fr=open(fpath, 'r', encoding="utf8")
 	tmp=''
 	for lineR in fr.readlines():
-		line=lineR.strip()
+		#line=lineR.strip("\n")#去除两端的换行
+		line= re.sub(r'\n$',"", lineR) #只去除末尾的换行
+
 		#if line.match("")
 		line=re.sub("<","&lt;",line);
 		line=re.sub(">","&gt;",line);
