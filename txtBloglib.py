@@ -1,7 +1,7 @@
 import json,re,time,os
 from flask import escape, url_for
 #import mistune
-import configparser,os
+import configparser
 # version 0.0.7-8
 
 

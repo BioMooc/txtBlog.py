@@ -13,7 +13,7 @@
 		"data":
 		[
 			["py入门", "Python-basic", "txt"],
-			["Py高级", "Python-adv", "txt" ],
+			["Py高级", "Python-adv", "md" ],
 			["py OOP", "Python-OOP", "txt" ]
 		]
 	}

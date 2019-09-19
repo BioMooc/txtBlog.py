@@ -2,7 +2,7 @@
 # project name: txtBlog.py is the python3 version of txtBlog 
 # desc: [知识管理]A simple yet powerful blog system for reading and organizing txt files.
 # desc2: Pyhton3编写的、基于文件的文本笔记管理系统，简捷高效，可用于管理知识。
-# version: 0.0.8
+# version: 0.0.9
 # github: https://github.com/DawnEve/txtBlog.py
 # appearence: https://github.com/DawnEve/txtBlog
 #
