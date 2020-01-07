@@ -15,11 +15,26 @@
 ################################
 整体构架:
 # 和记忆作斗争，是“坐家”们毕生的事业，本项目是一个简洁的文本笔记系统，就是为了管理知识，支持插入少量图片。
-# 使用Python3的flask包，尽量简化。https://flask.palletsprojects.com/en/1.1.x/
+# 使用Python3的flask包作为web框架，尽量简化。https://flask.palletsprojects.com/en/1.1.x/
 # 顶部关键词，左侧文件名，都使用json格式的配置文件。
 # 支持html/txt/markdown格式的笔记，未来会支持 ReStructuredText等;
 # 为了应付最危险的情况：python部件不再支持(5-10年内不会发生)，博客系统失灵，建议文件命名时要言简意赅、见名知意！保证human也能读懂。
 #
+
+
+
+
+
+################################
+What's new?
+v0.0.9-1 为markdown代码添加行号
+
+
+
+
+
+
+
 
 
 
@@ -32,8 +47,11 @@ OS: win10和linux都可以，但是需要有可用的端口号，本项目默认
 $ python -V  
 ## Python 3.6.4
 
-使用pip安装 flask: 
+使用pip安装 flask(web服务器): 
 $ pip install flask
+
+使用pip安装 mistune(markdown解析器): 
+$ pip install mistune
 
 
 
@@ -116,7 +134,9 @@ Pyhton对json要求很严格：
 		"title":"前沿与资料",
 		"data":
 		[
-			["项目描述", "Python001", "html"]
+			["项目描述", "Python001", "html"],
+			["常用资源", "Python002", "md"],
+			["入门教程", "Python003", "txt"]
 		]
 	}
 ]
@@ -155,6 +175,7 @@ web based tutorials
 - 纯python版的markdown解析器 mistune;
 - css使用github的主要样式，颜色参考 https://segmentfault.com/a/1190000018084098
 - 支持代码高亮(依赖 highlight.js)；
+- md中的代码行号由自定义js实现 模仿 模仿 https://blog.csdn.net/hustqb/article/details/80628721
 - 支持LaTex(依赖 MathJax.js, 在线cdn，加载很慢) ，默认不开启；
 
 
@@ -239,3 +260,4 @@ top contents -> headers;
 
 彩蛋：
 English项目下添加菜单：底部名人名言插件，刷新随机展示一条，会周期性滚动。
+	- 滚动显示的内容在 /static/js/motto.js

@@ -102,9 +102,10 @@
 
 /*列表样式
 .content ul{	margin: 20px 50px; border:1px solid #eee; padding-left:30px;}
+border:1px solid #eee;
 */
-.content ul{	border:1px solid #eee; padding: 0 35px;}
-.content ol{	border:1px solid #eee; padding: 0 35px;}
+.content ul,
+.content ol{ padding: 0 35px;}
 /*常见问题汇总*/
 .content ol.faq li{	margin:10px 0;}
 

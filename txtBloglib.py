@@ -146,11 +146,42 @@ def markdownReader(fpath):
 	css='<link rel="stylesheet" type="text/css" href="/static/css/MarkDown3.css" media="all">\n'
 	js='<script type="text/javascript" src="/static/js/markdown.js"></script>\n\n'
 	tmp=css+js+tmp;
-	
+	codeNumberJS='''
+addEvent(window, 'load', function(){
+    //1. get pre code
+    var aPre=document.getElementsByTagName('pre');
+    var aCode=[]
+    for(var i=0;i<aPre.length;i++){
+    var oPre=aPre[i]
+    var aCode1=oPre.getElementsByTagName('code');
+    if(1== aCode1.length){
+        var oCode=aCode1[0]
+        aCode.push(oCode)
+        //2. get text inside
+        var lines=oCode.innerHTML.split("\\n")
+        var n=lines.length;
+        //console.log('i=',i, lines, '; n=',n)
+
+		//3.make a dom of numbering
+		var oUl=document.createElement('ul');
+		oUl.setAttribute('class', 'pre-numbering');
+		for(var j=0;j<n-1;j++){
+			var oLi=document.createElement('li');
+			oLi.innerHTML=j+1;
+			oUl.append(oLi)
+		}
+		//4. add to code
+		oPre.append(oUl)
+		oCode.setAttribute('class', oCode.getAttribute('class')+ ' has-numbering')
+        oPre.setAttribute('class', 'prettyprint')
+	}
+}
+})
+'''
 	# high light code
 	css2='<link rel="stylesheet" href="/static/css/highlight-routeros.css">\n'
 	js2='<script src="/static/js/highlight.pack.js"></script>\n\n'
-	tmp=tmp + css2+js2   + '<script>hljs.initHighlightingOnLoad();</script>';
+	tmp=tmp + css2+js2   + '<script>hljs.initHighlightingOnLoad();'+codeNumberJS+'</script>';
 	
 	# LaTex
 	#js3='<script src="/static/js/MathJax.js"></script>\n';
