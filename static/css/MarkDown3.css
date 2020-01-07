@@ -109,10 +109,10 @@ github 2019.8.16 .markdown-body
 .markdown .prettyprint{
 	margin: 0 0 24px 0;
 	/*
-    padding: 8px 16px 6px 56px;
-	*/
 	padding-left: 56px;
     padding-top: 7px;
+	*/
+    padding: 7px 16px 7px 56px;
 	
     background-color: #f6f8fa;
     border: none;
@@ -131,7 +131,7 @@ github 2019.8.16 .markdown-body
     top: 0;
     left: 0;
     margin: 0;
-    padding: 8px 0;
+    padding: 8px 0 6px 0;
     list-style: none;
     text-align: right;
 	
