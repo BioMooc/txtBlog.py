@@ -4,7 +4,10 @@ footer_urls={
 		['http://jquery.cuishifeng.cn/','jQuery手册'],
 		['http://www.runoob.com/','菜鸟教程网'],
 		['http://www.w3school.com.cn/','w3school'],
-		['http://php.net/','PHP'] ##tet
+		['https://www.python.org/','python'], ##test
+		['https://flask.palletsprojects.com/en/1.1.x/','flask'], 
+		['https://pypi.org/project/mistune/','mistune'], 
+		['http://www.biomooc.com/','生物慕课网']
 	],
 	
 	"bio_info":[

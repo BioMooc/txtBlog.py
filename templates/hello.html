@@ -4,7 +4,7 @@
 	<meta name="viewport" content="width=device-width" />
     <meta name="keywords" content="css,javascript,node,jquery,git,python,java,sql,php,mysql,linux,ios,android,教程,软件,编程,开发,运维,云计算,网络,互联网" />
     <meta name="description" content="研究互联网产品和技术，提供原创中文精品教程" />
-	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="shortcut icon" href="/static/images/favicon.ico">
 
 	<!--
 	<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
@@ -16,7 +16,7 @@
 
 	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}" media="all">
 	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/base.css')}}" media="all">
-	<title>txtBlog.py: web技术博客 - Powered by txtBlog.py</title>
+	<title> Powered by txtBlog.py</title>
 	<script type="text/javascript" src="{{url_for('static', filename='js/common.js')}}"></script>
 </head>
 
@@ -81,7 +81,7 @@ for(var i=0;i<aTitle.length;i++){
 
 
 //为html的title添加文件名
-document.title += " |{{ filepath }}"
+document.title = "{{ filepath }} | "+document.title;
 </script>	
 
 
@@ -126,14 +126,15 @@ document.title += " |{{ filepath }}"
 		</div>
 		
 		
-		<div class=ewm><img src="/static/images/erweima.png"><p>扫码关注</p></div>
+		<div class=ewm><img src="/static/images/erweima.png"><p>扫码关注<br>生物慕课</p></div>
 
 		
 		
 		<div class='links'>
-			Copyright &copy; 2009 - 2019 DawnEve. All Rights Reserved. | 
+			Copyright &copy; 2009 - 2020 <a target='_blank' href='http://www.biomooc.com'>BioMooc.com</a>. All Rights Reserved. | 
 			<a target='_blank' href='https://github.com/DawnEve/txtBlog.py'>Folk me on Github</a> | 
-			<a target='_blank' href='http://pan.baidu.com/s/1i3imHpF' title='密码:qa53'>web tools</a>
+			<a target='_blank' href='http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=K1xBRxgaHx0fEh4SGGtaWgVIREY'>意见反馈</a> | 
+			<a target='_blank' href='http://pan.baidu.com/s/1i3imHpF' title='密码:qa53'>web DevTools</a>
 		</div>
 
 		
