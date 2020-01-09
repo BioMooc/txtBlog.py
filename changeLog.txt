@@ -266,6 +266,7 @@ v0.0.9-1 用js为markdown代码添加行号
 	更新 /highlight.pack.js 以便支持R代码高亮。
 v0.0.9-2 更新底部年份、链接等;显示favicon.ico
 v0.0.9-3 修正代码行号左侧底下多出的一块
+v0.0.9-4 允许markdown更换css文件
 #
 	
 

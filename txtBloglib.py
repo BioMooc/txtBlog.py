@@ -123,6 +123,11 @@ def markdownReader(fpath):
 	fr=open(fpath, 'r', encoding="utf8")
 	text=fr.read()
 	fr.close()
+    
+    #遇到 MathJax 和markdown 冲突怎么办?https://www.v2ex.com/t/240363
+    # mathjax中的'_'(下划线字符 下标)与markdown中的斜体冲突
+    
+    
 	# markdown to html
 	#tmp=mistune.markdown(text, escape=False, hard_wrap=True) #'I am using **mistune markdown parser**'
 	tmp=md2html(text) #'I am using **mistune markdown parser**'  , escape=False, hard_wrap=True
@@ -143,7 +148,8 @@ def markdownReader(fpath):
 	tmp+=cornerContents;#这个框架的内容由js在markdown.js中填充
 	
 	# add markdown style sheet and top contents js, left bottom corner contents.
-	css='<link rel="stylesheet" type="text/css" href="/static/css/MarkDown3.css" media="all">\n'
+	mdStyle=getConf("style","markdown") #get markdown style file name from config file.
+	css='<link rel="stylesheet" type="text/css" href="/static/css/'+mdStyle+'.css" media="all">\n'
 	js='<script type="text/javascript" src="/static/js/markdown.js"></script>\n\n'
 	tmp=css+js+tmp;
 	codeNumberJS='''

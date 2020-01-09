@@ -54,13 +54,14 @@ txtBlog.py uses MathJax.js([cnd](https://cdnjs.com/libraries/mathjax), [github](
 
 $$c = \sqrt{a^2 + b^2}$$
 
-$\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$。
+这个公式 $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ 是很牛叉的。
+
+$$\varGamma(x)=\frac{\int_{\alpha}^{\beta}g(t)(x-t)^2\text{d}t}{\phi(x)\sum_{i=0}^{N-1}\omega_i}\tag{2}$$
+
+
 
 $\varGamma(x)=\frac{\int_{\alpha}^{\beta}g(t)(x-t)^2\text{d}t}{\phi(x)\sum_{i=0}^{N-1}\omega_i}\tag{2}$
 
-$$
-\varGamma(x)=\frac{\int_{\alpha}^{\beta}g(t)(x-t)^2\text{d}t}{\phi(x)\sum_{i=0}^{N-1}\omega_i}\tag{2}
-$$
 
 
 $$\alpha+\beta=\gamma$$
