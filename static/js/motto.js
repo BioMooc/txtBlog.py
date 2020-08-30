@@ -19,9 +19,16 @@ motto_Plugin.run([100 ,30], document.getElementsByClassName("motto")[1]);
 			"子曰：逝者如斯夫，不舍昼夜。",
 			"如果有一天我好运来临，那一定是我努力所得，并非上天眷顾。",
 			"The future belongs to those who believe in the beauty of their dreams.",
+			
+			"把平凡做成优秀，把优秀变成习惯。",
+			"种一棵树最好的时间是十年前，其次是现在。",
+			"控制欲望，保持好奇。",
+			"Do have faith in what you're doing.",
 			//"Some 5,000 red-winged blackbirds, European starlings, common grackles and brown-headed cowbirds suffered blunt-force trauma after colliding with cars, trees and buildings, an ornithologist from the Arkansas Game and Fish Commission would tell National Geographic. //[熟词生义] game. 猎物",
 		],
-		'bgColors':['red','#F19C01','#A49B03','green','blue','#18C1C1','purple','black'],
+		'bgColors':['red','#F19C01','#A49B03','green','blue','#18C1C1','purple',
+			'#ff7f27',
+			'black'],
 /*
 #F19C01 orange
 #D2C701 yellow A49B03

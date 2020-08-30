@@ -17,6 +17,10 @@ if __name__=='__main__':
     app.run(host="192.168.2.120",port=8000)
 ```
 
+或者一行实现简单web预览图片功能: `$ python -m http.server --bind 192.168.2.100 8001`
+
+
+
 
 ### JavaScript closure
 定时器练习：每秒钟打印一个数字，该数字递增。
@@ -47,31 +51,87 @@ int main(){
 
 
 
-### LaTex
+
+
+
+
+
+
+
+
+
+
+## LaTex
 
 txtBlog.py uses MathJax.js([cnd](https://cdnjs.com/libraries/mathjax), [github](https://codeload.github.com/mathjax/MathJax/zip/2.7.5), [docs](https://mistune.readthedocs.io/en/latest/)) to render LaTeX inside html/markdown(some). Just put your LaTeX math inside `$$`.
 
+开启或者关闭LaTex解析功能，`请在 /config/conf.ini 中的设置 LaTex = on 或 off(默认)`。
+
+
+(1) 正常显示 **行内**
+ 
+这个公式 $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ 是很牛叉的。
+
+Therefore, given the squared distances between rows ($D\bullet D$) and the cross product of the centered matrix $B=(HX)(HX)^t$, we have shown.
+
+
+
+(2) 正常显示 **行间**
 
 $$c = \sqrt{a^2 + b^2}$$
 
-这个公式 $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ 是很牛叉的。
 
-$$\varGamma(x)=\frac{\int_{\alpha}^{\beta}g(t)(x-t)^2\text{d}t}{\phi(x)\sum_{i=0}^{N-1}\omega_i}\tag{2}$$
-
-
-
-$\varGamma(x)=\frac{\int_{\alpha}^{\beta}g(t)(x-t)^2\text{d}t}{\phi(x)\sum_{i=0}^{N-1}\omega_i}\tag{2}$
-
-
-
-$$\alpha+\beta=\gamma$$
-
+行间吗 $$\alpha+\beta=\gamma$$
 
 $$\int_{0}^{1}f(x)dx \sum_{1}^{2}\int_{0}^{1}f(x)dx \sum_{1}^{2}\int_{0}^{1}f(x)dx \sum_{1}^{2}\int_{0}^{1}f(x)dx \sum_{1}^{2}\int_{0}^{1}f(x)dx \sum_{1}^{2}\int_{0}^{1}f(x)dx \sum_{1}^{2}\int_{0}^{1}f(x)dx \sum_{1}^{2}\int_{0}^{1}f(x)dx \sum_{1}^{2}\int_{0}^{1}f(x)dx \sum_{1}^{2}\int_{0}^{1}f(x)dx \sum_{1}^{2}$$
 
 
+$$
+S^{(r) } =
+\begin{pmatrix}
+s_1 &0 & 0 &0 &...\\
+0&s_2&0 & 0 &...\\
+0& 0& ...& ... & ...\\
+0 & 0 & ... & s_r &...\\
+...& ...& ...& 0 & 0 \\
+\end{pmatrix}
+$$
 
-### 长片段R代码
+
+$$
+\begin{equation*}
+\text{stress}^2=\frac{\sum(f(d)-\tilde{d})^2}{\sum d^2}.
+\end{equation*}
+$$
+
+
+$$
+\begin{equation*}
+{\cal X}^2=\sum_{i,j} \frac{\left(n_{ij}-\frac{n_{i\cdot}}{n}\frac{n_{\cdot j}}{n}n\right)^2}
+{\frac{n_{i\cdot}n_{\cdot j}}{n^2}n}
+\end{equation*}
+$$
+
+
+
+(3) 测试行内长公式，其中的下划线常常被markdown错误的提前解析，公式内出现em标签导致`mathJax无法解析`。
+
+$$\varGamma(x)=\frac{\int_{\alpha}^{\beta}g(t)(x-t)^2\text{d}t}{\phi(x)\sum_{i=0}^{N-1}\omega_i}\tag{2}$$
+
+$\varGamma(x)=\frac{\int_{\alpha}^{\beta}g(t)(x-t)^2\text{d}t}{\phi(x)\sum_{i=0}^{N-1}\omega_i}$
+
+行内公式不能正常显示 $\varGamma(x)=\frac{\int_{\alpha}^{\beta}g(t)(x-t)^2\text{d}t}{\phi(x)\sum_{i=0}^{N-1}\omega_i}$ int后的下划线
+
+
+
+
+
+
+
+
+
+
+## 长片段R代码
 ```R
 # 使用 DESeq2分析DEG，并画火山图
 ##########################

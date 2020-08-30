@@ -3,6 +3,7 @@ from flask import escape, url_for
 #import mistune
 import configparser
 # version 0.0.7-8
+# version 0.0.7-9 部分支持行内Math
 
 
 
@@ -11,26 +12,37 @@ import configparser
 
 #import re
 from mistune import Renderer, Markdown, InlineLexer
-# todo 单引号括起来的还没有处理？
+# todo 单引号括起来的还没有处理好？ //------> todo
 # define new sub class
 #让mistune不后台处理$$和$$之间的LaTex代码，交给前台的js处理成数学公式
 class LaTexRenderer(Renderer):
     #def LaTex(self, alt, link):
     def LaTex(self, text):
         return '$$%s$$' % (text)
+    def LaTex_inline(self, text):
+        return '$%s$' % (text)
+
 
 class LaTexInlineLexer(InlineLexer):
     def enable_LaTex(self):
         # add LaTex rules
         self.rules.LaTex = re.compile(
-            r'\$\$'                   # $$ 头
+            r'\$$'                   # $$ 头
             r'([\s\S]+?)'   # *** 中间
-            r'\$\$(?!\])'             # $$ 尾
+            r'\$$(?!\])'             # $$ 尾
         )
         # Add LaTex parser to default rules
         # you can insert it some place you like
         # but place matters, maybe 3 is not good
         self.default_rules.insert(3, 'LaTex')
+        #
+        self.rules.LaTex_inline = re.compile(
+            r'\$'                   # $$ 头
+            r'([\s\S]+?)'   # *** 中间
+            r'\$(?!\])'             # $$ 尾
+        )
+        self.default_rules.insert(0, 'LaTex_inline')
+
 
     def output_LaTex(self, m):
         text = m.group(1)
@@ -39,7 +51,15 @@ class LaTexInlineLexer(InlineLexer):
         # you can also return the html if you like
         #return self.renderer.LaTex(alt, link)
         return self.renderer.LaTex(text)
+    def output_LaTex_inline(self, m):
+        text = m.group(1)
+        #alt, link = text.split('|')
+        # you can create an custom render
+        # you can also return the html if you like
+        #return self.renderer.LaTex(alt, link)
+        return self.renderer.LaTex_inline(text)
 # the end of sub class
+
 # 跳过LaTex片段的markdown to html parser mistune子类
 def md2html(md):
 	renderer = LaTexRenderer()
@@ -265,7 +285,7 @@ def getData(k,id):
 			content=txtReader(filepath)
 
 	#如果是英语频道，则新增底部英语随机句子。
-	if k=="English":
+	if k=="English" or getConf('function','motto')=="on":
 		content+='\n<script src="/static/js/startMove_OOP.js"></script>\n<script src="/static/js/motto.js"></script>\n';
 
 	return (url_left, content,filepath.replace("data/",""), lastModified,suffix)
