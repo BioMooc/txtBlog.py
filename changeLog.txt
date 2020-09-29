@@ -269,6 +269,7 @@ v0.0.9-3 修正代码行号左侧底下多出的一块
 v0.0.9-4 允许markdown更换css文件
 v0.0.9-5 设置motto的开关
 v0.0.9-6 data/search.sh 单行脚本搜索功能
+v0.0.9-7 config中关掉motto; html 支持 LaTex公式;
 #
 #--> commit
 #--------->push DawnEve

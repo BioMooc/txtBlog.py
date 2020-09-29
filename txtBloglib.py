@@ -128,6 +128,14 @@ def htmlReader(fpath):
 	fr=open(fpath, 'r', encoding="utf8")
 	tmp=fr.read();
 	fr.close();
+    
+    # LaTex
+	#js3='<script src="/static/js/MathJax.js"></script>\n';
+	js3='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>';
+	js3+='<script src="/static/js/showLaTex.js"></script>\n\n';
+	if getConf("function","LaTex")=="on":
+		tmp=tmp+js3;
+        
 	return tmp;
 #
 
