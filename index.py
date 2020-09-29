@@ -36,7 +36,7 @@ def hello(k,id="0_0"):
 
 	#render template
 	return render_template('hello.html', topMenu=topMenu, leftMenu=rs[0], filepath=rs[2],  \
-		content=rs[1], lastModified=rs[3],suffix=rs[4], footer=footer)
+		content=rs[1], lastModified=rs[3],suffix=rs[4], footer=footer, version=getConf('version', 'version') )
 # http://127.0.0.1:8000/index/Python/0_0.html
 
 

@@ -271,6 +271,8 @@ v0.0.9-5 设置motto的开关
 v0.0.9-6 data/search.sh 单行脚本搜索功能
 v0.0.9-7 config中关掉motto; html 支持 LaTex公式;
 #
+v0.1.0-1 添加底部版本号，在config中设定
+#
 #--> commit
 #--------->push DawnEve
 
