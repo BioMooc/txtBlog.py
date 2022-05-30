@@ -1,8 +1,9 @@
 ################################
 project name: txtBlog.py
 
-#local url:http://blog2.163.com/
-#dir:G:\xampp\htdocs\163
+#dir:G:\xampp\htdocs\txtBlog.py
+#$ python3 index.py
+#local url:http://127.0.0.1:8000
 ################################
 
 # 使用flask框架，尽量简化。https://flask.palletsprojects.com/en/1.1.x/
@@ -10,7 +11,7 @@ project name: txtBlog.py
 # 预计支持html/txt格式的文档。尽量留下扩展。
 
 #quick start: https://flask.palletsprojects.com/en/1.1.x/quickstart/#quickstart
-每次改动需要重启才能生效
+每次改动需要重启服务才能生效，开发模式则会修改后自动重启服务。
 
 ################################
 1.如何从路由器传入参数
@@ -272,9 +273,14 @@ v0.0.9-6 data/search.sh 单行脚本搜索功能
 v0.0.9-7 config中关掉motto; html 支持 LaTex公式;
 #
 v0.1.0-1 添加底部版本号，在config中设定
+
+####################
+# BioMooc/
+####################
+v0.1.0-2 transfer to BioMooc/
 #
 #--> commit
-#--------->push DawnEve
+#--------->push BioMooc/
 
 
 
