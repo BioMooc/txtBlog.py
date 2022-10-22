@@ -6,7 +6,15 @@ import configparser
 # version 0.0.7-9 部分支持行内Math
 
 
+import colorama
+from colorama import Fore
+from colorama import Style
+colorama.init()
 
+def print_yellow(str):
+    print(Fore.YELLOW + Style.BRIGHT + str + Style.RESET_ALL)
+def print_red(str):
+    print(Fore.RED + Style.BRIGHT + str + Style.RESET_ALL)
 
 
 
@@ -130,9 +138,10 @@ def htmlReader(fpath):
 	fr.close();
     
     # LaTex
-	#js3='<script src="/static/js/MathJax.js"></script>\n';
+	#js3='<script src="/static/js/MathJax-2.7.5.js"></script>\n';
+	#js3='<script src="/static/js/MathJax-tex-mml-chtml-3-es5.js?config=TeX-MML-AM_CHTML"></script>\n';
 	js3='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>';
-	js3+='<script src="/static/js/showLaTex.js"></script>\n\n';
+	#js3+='<script src="/static/js/showLaTex.js"></script>\n\n';
 	if getConf("function","LaTex")=="on":
 		tmp=tmp+js3;
         
@@ -218,9 +227,11 @@ addEvent(window, 'load', function(){
 	tmp=tmp + css2+js2   + '<script>hljs.initHighlightingOnLoad();'+codeNumberJS+'</script>';
 	
 	# LaTex
-	#js3='<script src="/static/js/MathJax.js"></script>\n';
-	js3='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>';
+	js3='<script type="text/javascript" async src="/static/js/MathJax-2.7.5.js?config=TeX-MML-AM_CHTML"></script>\n';
+	#js3='<script type="text/javascript" async src="/static/js/MathJax-tex-mml-chtml-3-es5.js"></script>\n';
+	#js3='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>';
 	js3+='<script src="/static/js/showLaTex.js"></script>\n\n';
+	print_red(js3);
 	if getConf("function","LaTex")=="on":
 		tmp=tmp+js3;
 	
@@ -244,9 +255,19 @@ def getData(k,id):
 	#
 	load_f=open(fname,'r',encoding="utf8")
 	menus = json.load(load_f);
+	#关闭文件
 	load_f.close();
 
-	#凑出来文件路径
+
+	#凑出来文件路径，如果找不到则定位到错误页面
+	print_red("====> menes: "+k+ "/ " + str(len(menus) ) + "sections" );
+	print(menus); #顶部菜单数据
+
+	if len( menus )<=n0: #如果 R/ 下分块下标不含url的请求，则报错
+		return (0, "Error: Index out of bounds! Top menu length: "+ str(len(menus)) + ", doesn't have "+str(n0)+"th element(0-based index)" );
+	if len( menus[n0]["data"] )<=n1: #
+		return (0, "Error: Index out of bounds! "+k+"/ left section "+ str(n0) +" only have "+ str(len(menus[n0]["data"])) +" files, doesn't have index "+ str(n1) +"(0-based)" );
+
 	menuCur =  menus[n0]["data"][n1]
 	filepath="data/"+k+"/"+menuCur[1]+"."+menuCur[2] #路径
 	suffix=menuCur[2].lower() #后缀
@@ -269,8 +290,6 @@ def getData(k,id):
 			
 			url_left+="<li"+cur+"><a href=" + item_url +">"+id+" "+arr2[j][0]+"</a></li>\n"
 		url_left+="</ul>\n</li>\n"
-	#关闭文件
-	load_f.close();
 	
 	#上次修改时间
 	lastModified = "2017-10-19 7:0:0"

@@ -2,12 +2,12 @@
 # project name: txtBlog.py is the python3 version of txtBlog 
 # desc: [知识管理]A simple yet powerful blog system for reading and organizing txt files.
 # desc2: Pyhton3编写的、基于文件的文本笔记管理系统，简捷高效，可用于管理知识。
-# version: 0.0.9
-# github: https://github.com/DawnEve/txtBlog.py
-# appearence: https://github.com/DawnEve/txtBlog
+# version: 0.1.0
+# github: https://github.com/BioMooc/txtBlog.py
+# appearence: https://www.biomooc.com/Python3/Python3-web.html#2
 #
-# local test url: http://blog2.163.com:8000/
-# local dir:G:\xampp\htdocs\163
+# url: http://127.0.0.1:8000/
+# local dir: 一体机 G:\xampp\htdocs\txtBlog.py
 ################################
 
 
@@ -16,9 +16,10 @@
 整体构架:
 # 和记忆作斗争，是“坐家”们毕生的事业，本项目是一个简洁的文本笔记系统，就是为了管理知识，支持插入少量图片。
 # 使用Python3的flask包作为web框架，尽量简化。https://flask.palletsprojects.com/en/1.1.x/
-# 顶部关键词，左侧文件名，都使用json格式的配置文件。
+# 顶部关键词menu，左侧文件名menu，都使用json格式的配置文件。
+# 网页内容顶部、网页标题都有文件名，方便找到去增删改。
 # 支持html/txt/markdown格式的笔记，未来会支持 ReStructuredText等;
-# 为了应付最危险的情况：python部件不再支持(5-10年内不会发生)，博客系统失灵，建议文件命名时要言简意赅、见名知意！保证human也能读懂。
+# 为应付最危险的情况：python部件不再支持(now=2022，5-10年内不会发生)，博客系统失灵，文件名要言简意赅、见名知意，保证human也能读懂。
 #
 
 
@@ -29,7 +30,7 @@
 What's new?
 v0.0.9-1 为markdown代码块添加行号
 v0.0.9-6 data/search.sh 单行脚本搜索功能
-
+v0.1.0-2 transfer to BioMooc/
 
 
 
@@ -57,11 +58,11 @@ $ pip install mistune
 
 2.下载该项目
 通过
-$ git clone https://github.com/DawnEve/txtBlog.py.git
+$ git clone https://github.com/BioMooc/txtBlog.py.git
 或者下载压缩包并解压
-$ wget https://github.com/DawnEve/txtBlog.py/archive/master.zip
+$ wget https://github.com/BioMooc/txtBlog.py/archive/master.zip
 
-可以放到硬盘的任意位置，但是路径中不要出现中文字符。
+可以放到硬盘的任意位置，但是路径中最好不要出现中文字符和空格。
 
 
 
