@@ -89,7 +89,7 @@ def md2html(md):
 def getConf(section, item): 
 	base_dir = str(os.path.dirname(__file__))
 	base_dir = base_dir.replace('\\', '/')
-	file_path = base_dir + "./config/conf.ini"
+	file_path = base_dir + "/data/_config/conf.ini"
 	#return base_dir;
 	#print("file_path=", file_path);
 	

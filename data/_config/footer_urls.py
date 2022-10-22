@@ -12,7 +12,7 @@ footer_urls={
 	
 	"bio_info":[
 		['http://www.bioinfo-scrounger.com/','生信笔记'],
-		['https://www.cnblogs.com/leezx/tag/单细胞/','单细胞'],
+		['https://www.cnblogs.com/leezx/tag/单细胞/','单细胞 cnblogs'],
 		['https://face2ai.com/Math-Probability-5-5-The-Negative-Binomial-Distribution/','谭升(统计/书list)'],
 		['https://life2cloud.com/cn/2018/11/pipelines-styles/','李剑峰(生信流程)'],
 		['http://blog.shenwei.me/about/','shenwei(微生物)']

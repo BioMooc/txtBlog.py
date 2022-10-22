@@ -278,10 +278,38 @@ v0.1.0-1 添加底部版本号，在config中设定
 ####################
 v0.1.0-2 transfer to BioMooc/
 v0.1.0-3 fix: 如果 URL 乱写则报错
+v0.1.0-4 数据文件集中到 /data/_config/ 配置文件 和 底部链接文件
 #
 #--> commit
 #--------->push BioMooc/
 
+
+
+
+
+
+
+todo:
+怎么把公式js代码本地化?
+	http://tool.dawneve.cc/JavaScript/mathJax_demo.html
+	cdn http://t.zoukankan.com/bobofuns-p-6829920.html
+
+
+todo: 
+依赖包 mistune 升级了，怎么升级？怎么适应不同 python 版本?
+https://pypi.org/project/mistune/#history
+mistune 包从0.84 直接跳到了2.0版本，很多函数的名字改了。最近要发布3.0版本。
+对于新版本的 mistune，可以直接使用 mistune.html("*good*")
+
+This plugin is NOT ENABLED by default in mistune.html(). To enable math plugin with your own markdown instance:
+
+markdown = mistune.create_markdown(plugins=['math'])
+Another way to create your own Markdown instance:
+
+from mistune.plugins.math import math
+
+renderer = mistune.HTMLRenderer()
+markdown = mistune.Markdown(renderer, plugins=[math])
 
 
 

@@ -2,7 +2,7 @@
 # project name: txtBlog.py is the python3 version of txtBlog 
 # desc: [知识管理]A simple yet powerful blog system for reading and organizing txt files.
 # desc2: Pyhton3编写的、基于文件的文本笔记管理系统，简捷高效，可用于管理知识。
-# version: 0.1.0
+# version: 0.1.0-4
 # github: https://github.com/BioMooc/txtBlog.py
 # appearence: https://www.biomooc.com/Python3/Python3-web.html#2
 #
@@ -103,8 +103,8 @@ $ python index.py
 /data/
  |- topMenu.json
  |- R.json
- |- Python.json
  |- R/
+ |- Python.json
  |- Python/
     |- images/
     |- Python001.html
@@ -123,7 +123,7 @@ $ python index.py
 Pyhton对json要求很严格： 
 	- 最后一个元素后不能出现逗号！否则报错。
 	- 键值对中，键要用双引号，值如果是字符串也要用双引号。
-	- json中不能出现注释！相比js中的json，太可悲了。
+	- json中不能出现注释！相比js中的json，太严格了。
 
 
 
@@ -178,7 +178,7 @@ web based tutorials
 - css使用github的主要样式，颜色参考 https://segmentfault.com/a/1190000018084098
 - 支持代码高亮(依赖 highlight.js);
 - md中的代码行号由自定义js实现 模仿 模仿 https://blog.csdn.net/hustqb/article/details/80628721
-- 支持LaTex(依赖 MathJax.js, 在线cdn，加载很慢) ，默认不开启，开关在 /config/conf.ini；
+- 支持LaTex(依赖 MathJax.js, 在线cdn，加载很慢) ，默认不开启，开关在 /data/_config/conf.ini；
 
 
 
@@ -197,7 +197,7 @@ web based tutorials
 
 
 3. 底部友情链接的更新
-链接数据是json格式的，定义在文件 /footer_urls.py 中。
+链接数据是json格式的，定义在文件 /data/_config/footer_urls.py 中。
 链接html生成函数 get_links() 在 /txtBloglib.py 中定义，并在 /index.py 中执行。
 
 
@@ -261,12 +261,10 @@ top contents -> headers; 小标题
 如何升级
 1. 从github使用 git clone 下载新的框架;
 2. 把旧项目中自己的data/文件夹，复制粘贴，覆盖新版本中的data/文件夹；
+	- 底部友情链接: /data/_config/footer_urls.py
+	- 自定义风格: /data/_config/conf.ini
 3. 其他小的数据文件包括：
-	- 底部友情链接: /footer_urls.py
-	- English 频道的名人名言: 
-	- 自定义风格: /config/conf.ini
-
-
 彩蛋：
+	- English 频道的名人名言: 
 English项目下添加菜单：底部名人名言插件，刷新随机展示一条，会周期性滚动。
 	- 滚动显示的内容在 /static/js/motto.js

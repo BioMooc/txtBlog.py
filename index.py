@@ -1,6 +1,6 @@
 from flask import Flask, escape,request, url_for,render_template,send_from_directory,redirect
 from txtBloglib import *
-from footer_urls import *
+from data._config.footer_urls import *
 
 app = Flask(__name__)
 
