@@ -1,8 +1,9 @@
 ################################
 # project name: txtBlog.py is the python3 version of txtBlog 
 # desc: [知识管理]A simple yet powerful blog system for reading and organizing txt files.
-# desc2: Pyhton3编写的、基于文件的文本笔记管理系统，简捷高效，可用于管理知识。
+# desc2: Pyhton3 编写的、基于文件的文本笔记管理系统，简捷高效，可用于管理知识。
 # version: 0.1.0-4
+# depend: python3, flask, mistune
 # github: https://github.com/BioMooc/txtBlog.py
 # appearence: https://www.biomooc.com/Python3/Python3-web.html#2
 #
@@ -29,7 +30,7 @@
 ################################
 What's new?
 v0.0.9-1 为markdown代码块添加行号
-v0.0.9-6 data/search.sh 单行脚本搜索功能
+v0.0.9-6 data/search.sh 单行脚本搜索功能 $ cd data/ $ find . | xargs grep -n "someKeyWord" 2>/dev/null --color=auto
 v0.1.0-2 transfer to BioMooc/
 
 
@@ -46,13 +47,14 @@ OS: win10和linux都可以，但是需要有可用的端口号，本项目默认
 
 安装python3，查看版本号
 $ python -V  
-## Python 3.6.4
+## Python 3.6.4 #其他版本的没做过测试
 
 使用pip安装 flask(web服务器): 
 $ pip install flask
 
 使用pip安装 mistune(markdown解析器): 
-$ pip install mistune
+$ pip install mistune #v0.8.4, 在高版本的v2.0和v3.0需要修改本框架才能运行
+
 
 
 
@@ -80,7 +82,7 @@ $ python index.py
 按照命令行提示的网址： Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
 打开chrome浏览器，输入 http://127.0.0.1:8000/ 并回车即可访问。
 
-如果报错，请阅读出错提示，百度解决，或者留言 issues 提问。
+如果报错，请阅读出错提示，百度解决，或者发 issues 留言。
 
 
 
@@ -259,12 +261,11 @@ top contents -> headers; 小标题
 
 ################################
 如何升级
-1. 从github使用 git clone 下载新的框架;
+1. 从github使用 git clone 下载新版本的框架;
 2. 把旧项目中自己的data/文件夹，复制粘贴，覆盖新版本中的data/文件夹；
+	- 用户自定义数据: /data/ 顶部目录、左侧目录、自定义文件等；
 	- 底部友情链接: /data/_config/footer_urls.py
 	- 自定义风格: /data/_config/conf.ini
 3. 其他小的数据文件包括：
-彩蛋：
-	- English 频道的名人名言: 
-English项目下添加菜单：底部名人名言插件，刷新随机展示一条，会周期性滚动。
-	- 滚动显示的内容在 /static/js/motto.js
+彩蛋：English 顶部目录下，底部会出现名人名言插件，刷新时随机展示一条名人名言，并周期性滚动。
+	- English 频道的名人名言: 滚动显示的内容在 /static/js/motto.js

@@ -1,11 +1,12 @@
 import json,re,time,os
 from flask import escape, url_for
-#import mistune
 import configparser
 # version 0.0.7-8
 # version 0.0.7-9 部分支持行内Math
 
 
+
+# 在控制台打印彩色文字
 import colorama
 from colorama import Fore
 from colorama import Style
