@@ -140,7 +140,7 @@ body{background:#aaa;}
 .foot_top a:hover{text-decoration:underline;opacity:0.9;}
 
 .footer a{margin:10px 2px; display: inline-block;} 
-
+.footer .fade b{color:#ddd;}
 
 /*一些通用的颜色和样式*/
 .small {font-size: 11px;}

@@ -257,7 +257,7 @@ addEvent(window, 'load', function(){
 	#js3='<script type="text/javascript" async src="/static/js/MathJax-tex-mml-chtml-3-es5.js"></script>\n';
 	js3='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>';
 	js3+='<script src="/static/js/showLaTex.js"></script>\n\n';
-	print_red(js3);
+	#print_red(js3);
 	if getConf("function","LaTex")=="on":
 		tmp=tmp+js3;
 
@@ -286,8 +286,8 @@ def getData(k,id):
 
 
 	#凑出来文件路径，如果找不到则定位到错误页面
-	print_red("====> menes: "+k+ "/ " + str(len(menus) ) + "sections" );
-	print(menus); #顶部菜单数据
+	print_red("====> menu: "+k+ "/ " + str(len(menus) ) + "sections" );
+	#print(menus); #顶部菜单数据
 
 	if len( menus )<=n0: #如果 R/ 下分块下标不含url的请求，则报错
 		return (0, "Error: Index out of bounds! Top menu length: "+ str(len(menus)) + ", doesn't have "+str(n0)+"th element(0-based index)" );
