@@ -32,6 +32,8 @@ if (isMathjaxConfig === false) { // 如果：没有配置MathJax
 }
 
 // 如果，不传入第三个参数，则渲染整个document
-window.MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+window.addEventListener('load', function(){
+	window.MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+}, false);
 // 因为使用的Vuejs，所以指明#app，以提高速度
 //window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementById('app')]);

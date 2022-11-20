@@ -69,6 +69,9 @@ class LaTexInlineLexer(InlineLexer):
         return self.renderer.LaTex_inline(text)
 # the end of sub class
 
+
+
+
 # 跳过LaTex片段的markdown to html parser mistune子类
 def md2html(md):
 	renderer = LaTexRenderer()
@@ -87,17 +90,20 @@ def md2html(md):
 
 # read configure file
 # v0.1 没有该值怎么办？
-def getConf(section, item): 
+def getConf(section, item):
 	base_dir = str(os.path.dirname(__file__))
 	base_dir = base_dir.replace('\\', '/')
 	file_path = base_dir + "/data/_config/conf.ini"
 	#return base_dir;
 	#print("file_path=", file_path);
-	
+
 	cf = configparser.ConfigParser()   # configparser类来读取config文件
 	cf.read(file_path)
 
-	return cf.get(section, item); 
+	return cf.get(section, item);
+
+
+
 
 
 #文本文件阅读器，input filepath, return string from the file.
@@ -105,6 +111,7 @@ def getConf(section, item):
 #v0.4 对尖括号转码
 #v0.5 添加纸质背景
 #v0.6 分离txt.css，支持在config/conf.ini配置文件中切换皮肤
+#v0.7 fix left corner
 def txtReader(fpath,txtStyle="ubuntu1"):
 	fr=open(fpath, 'r', encoding="utf8")
 	tmp=''
@@ -128,8 +135,25 @@ def txtReader(fpath,txtStyle="ubuntu1"):
 	js='<script type="text/javascript" src="/static/js/txt.js"></script>\n\n'
 	#获取配置风格
 	txtStyle=getConf('style','txt');
-	
-	return css+js+"<div class='content'><pre class="+txtStyle+">" + tmp + "</pre></div>\n";
+
+    	# left bottom corner contents
+	cornerContents="""
+<div id="common_box">
+	<div id="cli_title" class=title> Contents <b id="cli_on">+</b></div>
+	<div id="f_content" class=container>
+		<div class=content></div>
+		<div class="title">==This is the bottom==</div>
+	</div>
+</div>
+<script type="text/javascript" src="/static/js/startMove.js"></script>\n
+"""
+
+	return css+"<div class='content'><pre class="+txtStyle+">" + tmp + "</pre></div>"+cornerContents+js+"\n";
+
+
+
+
+
 
 #html读取器
 #v0.1
@@ -137,7 +161,7 @@ def htmlReader(fpath):
 	fr=open(fpath, 'r', encoding="utf8")
 	tmp=fr.read();
 	fr.close();
-    
+
     # LaTex
 	#js3='<script src="/static/js/MathJax-2.7.5.js"></script>\n';
 	#js3='<script src="/static/js/MathJax-tex-mml-chtml-3-es5.js?config=TeX-MML-AM_CHTML"></script>\n';
@@ -145,7 +169,7 @@ def htmlReader(fpath):
 	#js3+='<script src="/static/js/showLaTex.js"></script>\n\n';
 	if getConf("function","LaTex")=="on":
 		tmp=tmp+js3;
-        
+
 	return tmp;
 #
 
@@ -156,23 +180,24 @@ def htmlReader(fpath):
 #v0.4 左下角添加目录
 #v0.5 增加LaTex支持，依赖MathJax.js，不好用。因为mistune解析markdown时转义_为<i>，导致带有_的公式转换失败
 #v0.6 LaTex根据配置文件，决定是否加载
+#v0.7 恢复使用 online 版的 MathJax.js
 def markdownReader(fpath):
 	# read markdown
 	fr=open(fpath, 'r', encoding="utf8")
 	text=fr.read()
 	fr.close()
-    
+
     #遇到 MathJax 和markdown 冲突怎么办?https://www.v2ex.com/t/240363
     # mathjax中的'_'(下划线字符 下标)与markdown中的斜体冲突
-    
-    
+
+
 	# markdown to html
 	#tmp=mistune.markdown(text, escape=False, hard_wrap=True) #'I am using **mistune markdown parser**'
 	tmp=md2html(text) #'I am using **mistune markdown parser**'  , escape=False, hard_wrap=True
 	tmp="<div class=markdown>\n"+tmp+"</div>\n"
 	#tmp="<div class=content>\n"+tmp+"</div>\n"
-	
-	# left bottom corner contents 
+
+	# left bottom corner contents
 	cornerContents="""
 <div id="common_box">
 	<div id="cli_title" class=title> Contents <b id="cli_on">+</b></div>
@@ -184,7 +209,7 @@ def markdownReader(fpath):
 <script type="text/javascript" src="/static/js/startMove.js"></script>\n
 """
 	tmp+=cornerContents;#这个框架的内容由js在markdown.js中填充
-	
+
 	# add markdown style sheet and top contents js, left bottom corner contents.
 	mdStyle=getConf("style","markdown") #get markdown style file name from config file.
 	css='<link rel="stylesheet" type="text/css" href="/static/css/'+mdStyle+'.css" media="all">\n'
@@ -226,16 +251,16 @@ addEvent(window, 'load', function(){
 	css2='<link rel="stylesheet" href="/static/css/highlight-routeros.css">\n'
 	js2='<script src="/static/js/highlight.pack.js"></script>\n\n'
 	tmp=tmp + css2+js2   + '<script>hljs.initHighlightingOnLoad();'+codeNumberJS+'</script>';
-	
+
 	# LaTex
-	js3='<script type="text/javascript" async src="/static/js/MathJax-2.7.5.js?config=TeX-MML-AM_CHTML"></script>\n';
+	#js3='<script type="text/javascript" async src="/static/js/MathJax-2.7.5.js?config=TeX-MML-AM_CHTML"></script>\n';
 	#js3='<script type="text/javascript" async src="/static/js/MathJax-tex-mml-chtml-3-es5.js"></script>\n';
-	#js3='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>';
+	js3='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>';
 	js3+='<script src="/static/js/showLaTex.js"></script>\n\n';
 	print_red(js3);
 	if getConf("function","LaTex")=="on":
 		tmp=tmp+js3;
-	
+
 	return tmp;
 
 
@@ -288,10 +313,10 @@ def getData(k,id):
 			#
 			id=str(i)+"_"+str(j)
 			item_url=url_for('hello', k=k, id=id) #第一个参数是函数名，不是路由
-			
+
 			url_left+="<li"+cur+"><a href=" + item_url +">"+id+" "+arr2[j][0]+"</a></li>\n"
 		url_left+="</ul>\n</li>\n"
-	
+
 	#上次修改时间
 	lastModified = "2017-10-19 7:0:0"
 

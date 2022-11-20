@@ -280,6 +280,7 @@ v0.1.0-2 transfer to BioMooc/
 v0.1.0-3 fix: 如果 URL 乱写则报错
 v0.1.0-4 数据文件集中到 /data/_config/ 配置文件 和 底部链接文件
 v0.1.0-5 fix spell
+v0.1.0-6 fix left corner contents of txt/md;
 #
 #--> commit
 #--------->push to BioMooc/
