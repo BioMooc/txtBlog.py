@@ -1,7 +1,7 @@
 ################################
 # project name: txtBlog.py is the python3 version of txtBlog 
 # desc: [知识管理]A simple yet powerful blog system for reading and organizing txt files.
-# desc2: Pyhton3 编写的、基于文件的文本笔记管理系统，简捷高效，可用于管理知识。
+# desc2: python3 编写的、基于文件的文本笔记管理系统，简捷高效，可用于管理知识。
 # version: 0.1.0-4
 # depend: python3, flask, mistune
 # github: https://github.com/BioMooc/txtBlog.py
@@ -122,7 +122,7 @@ $ python index.py
 ]
 第一个字符要和/data/下的文件夹同名。
 
-Pyhton对json要求很严格： 
+python对json要求很严格： 
 	- 最后一个元素后不能出现逗号！否则报错。
 	- 键值对中，键要用双引号，值如果是字符串也要用双引号。
 	- json中不能出现注释！相比js中的json，太严格了。

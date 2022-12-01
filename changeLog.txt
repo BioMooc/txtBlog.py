@@ -282,6 +282,7 @@ v0.1.0-4 数据文件集中到 /data/_config/ 配置文件 和 底部链接文�
 v0.1.0-5 fix spell
 v0.1.0-6 fix left corner contents of txt/md;
 v0.1.0-7 fix spell;
+v0.1.0-8 fix spell in ReadMe.txt;
 #
 #--> commit
 #--------->push to BioMooc/
