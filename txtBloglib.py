@@ -1,8 +1,23 @@
 import json,re,time,os
-from flask import escape, url_for
-import configparser
+from flask import url_for
 # version 0.0.7-8
 # version 0.0.7-9 部分支持行内Math
+
+
+import configparser
+# read configure file
+# v0.1 没有该值怎么办？
+def getConf(section, item):
+	base_dir = str(os.path.dirname(__file__))
+	base_dir = base_dir.replace('\\', '/')
+	file_path = base_dir + "/data/_config/conf.ini"
+	#return base_dir;
+	#print("file_path=", file_path);
+
+	cf = configparser.ConfigParser()   # configparser类来读取config文件
+	cf.read(file_path)
+
+	return cf.get(section, item);
 
 
 
@@ -19,88 +34,99 @@ def print_red(str):
 
 
 
-#import re
-from mistune import Renderer, Markdown, InlineLexer
-# todo 单引号括起来的还没有处理好？ //------> todo
-# define new sub class
-#让mistune不后台处理$$和$$之间的LaTex代码，交给前台的js处理成数学公式
-class LaTexRenderer(Renderer):
-    #def LaTex(self, alt, link):
-    def LaTex(self, text):
-        return '$$%s$$' % (text)
-    def LaTex_inline(self, text):
-        return '$%s$' % (text)
+#################
+# mistune 版本号很关键
+# 不过放弃适配 LaTex 公式就简单多了
+#################
+import mistune
+version = mistune.__version__
+version_1=int( re.split("\.", version)[0] ) #主版本号
+
+isLaTexOn = getConf("function","LaTex")=="on" and  (version_1 in [0, 3])
+
+print("####################")
+print("# Global settings")
+print("# Markdown parser: mistune "+ version)
+print( "# LaTex: ", isLaTexOn)
+print("####################")
 
 
-class LaTexInlineLexer(InlineLexer):
-    def enable_LaTex(self):
-        # add LaTex rules
-        self.rules.LaTex = re.compile(
-            r'\$$'                   # $$ 头
-            r'([\s\S]+?)'   # *** 中间
-            r'\$$(?!\])'             # $$ 尾
-        )
-        # Add LaTex parser to default rules
-        # you can insert it some place you like
-        # but place matters, maybe 3 is not good
-        self.default_rules.insert(3, 'LaTex')
-        #
-        self.rules.LaTex_inline = re.compile(
-            r'\$'                   # $$ 头
-            r'([\s\S]+?)'   # *** 中间
-            r'\$(?!\])'             # $$ 尾
-        )
-        self.default_rules.insert(0, 'LaTex_inline')
+# mistune v0.8.4
+if version_1 < 1:
+    from mistune import Renderer, InlineLexer
+    # todo 单引号括起来的还没有处理好？ //------> todo
+    # define new sub class
+    #让mistune不后台处理$$和$$之间的LaTex代码，交给前台的js处理成数学公式
+    class LaTexRenderer(Renderer):
+        #def LaTex(self, alt, link):
+        def LaTex(self, text):
+            return '$$%s$$' % (text)
+        def LaTex_inline(self, text):
+            return '$%s$' % (text)
 
 
-    def output_LaTex(self, m):
-        text = m.group(1)
-        #alt, link = text.split('|')
-        # you can create an custom render
-        # you can also return the html if you like
-        #return self.renderer.LaTex(alt, link)
-        return self.renderer.LaTex(text)
-    def output_LaTex_inline(self, m):
-        text = m.group(1)
-        #alt, link = text.split('|')
-        # you can create an custom render
-        # you can also return the html if you like
-        #return self.renderer.LaTex(alt, link)
-        return self.renderer.LaTex_inline(text)
-# the end of sub class
+    class LaTexInlineLexer(InlineLexer):
+        def enable_LaTex(self):
+            # add LaTex rules
+            self.rules.LaTex = re.compile(
+                r'\$$'                   # $$ 头
+                r'([\s\S]+?)'   # *** 中间
+                r'\$$(?!\])'             # $$ 尾
+            )
+            # Add LaTex parser to default rules
+            # you can insert it some place you like
+            # but place matters, maybe 3 is not good
+            self.default_rules.insert(3, 'LaTex')
+            #
+            self.rules.LaTex_inline = re.compile(
+                r'\$'                   # $$ 头
+                r'([\s\S]+?)'   # *** 中间
+                r'\$(?!\])'             # $$ 尾
+            )
+            self.default_rules.insert(0, 'LaTex_inline')
+
+
+        def output_LaTex(self, m):
+            text = m.group(1)
+            #alt, link = text.split('|')
+            # you can create an custom render
+            # you can also return the html if you like
+            #return self.renderer.LaTex(alt, link)
+            return self.renderer.LaTex(text)
+        def output_LaTex_inline(self, m):
+            text = m.group(1)
+            #alt, link = text.split('|')
+            # you can create an custom render
+            # you can also return the html if you like
+            #return self.renderer.LaTex(alt, link)
+            return self.renderer.LaTex_inline(text)
+    # the end of sub class
+
+    
 
 
 
 
-# 跳过LaTex片段的markdown to html parser mistune子类
+
+# 对 mistune 0.xx: 跳过LaTex片段的markdown to html parser mistune子类
+# 对于 >= 1.xx 的，只能是普通渲染
 def md2html(md):
-	renderer = LaTexRenderer()
-	inline = LaTexInlineLexer(renderer)
-	# enable the feature
-	inline.enable_LaTex()
-	markdown = Markdown(renderer, inline=inline)
-	return markdown(md)
+    if version_1 < 1:
+        renderer = LaTexRenderer()
+        inline = LaTexInlineLexer(renderer)
+        # enable the feature
+        inline.enable_LaTex()
+        markdown = mistune.Markdown(renderer, inline=inline)
+        return markdown(md)
+    elif version_1==3:
+        from mistune.plugins.math import math
+        renderer = mistune.HTMLRenderer()
+        markdown = mistune.Markdown(renderer, plugins=[math])
+        return markdown(md)
+    else: # version_1==2
+        return mistune.html(md);
 #
 
-
-
-
-
-
-
-# read configure file
-# v0.1 没有该值怎么办？
-def getConf(section, item):
-	base_dir = str(os.path.dirname(__file__))
-	base_dir = base_dir.replace('\\', '/')
-	file_path = base_dir + "/data/_config/conf.ini"
-	#return base_dir;
-	#print("file_path=", file_path);
-
-	cf = configparser.ConfigParser()   # configparser类来读取config文件
-	cf.read(file_path)
-
-	return cf.get(section, item);
 
 
 
@@ -163,11 +189,13 @@ def htmlReader(fpath):
 	fr.close();
 
     # LaTex
-	#js3='<script src="/static/js/MathJax-2.7.5.js"></script>\n';
-	#js3='<script src="/static/js/MathJax-tex-mml-chtml-3-es5.js?config=TeX-MML-AM_CHTML"></script>\n';
-	js3='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>';
+	# js3='<script src="/static/js/mathjax-2.7.6/MathJax.js"></script>\n';
+	#js3='<script src="/static/js/mathjax-2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"></script>\n';
+	js3='<script src="/static/js/mathjax-2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"></script>\n';
+	#js3='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>';
 	#js3+='<script src="/static/js/showLaTex.js"></script>\n\n';
-	if getConf("function","LaTex")=="on":
+	#if getConf("function","LaTex")=="on":
+	if isLaTexOn:
 		tmp=tmp+js3;
 
 	return tmp;
@@ -255,10 +283,12 @@ addEvent(window, 'load', function(){
 	# LaTex
 	#js3='<script type="text/javascript" async src="/static/js/MathJax-2.7.5.js?config=TeX-MML-AM_CHTML"></script>\n';
 	#js3='<script type="text/javascript" async src="/static/js/MathJax-tex-mml-chtml-3-es5.js"></script>\n';
-	js3='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>';
+	js3='<script src="/static/js/mathjax-2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"></script>\n';
+	#js3='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>';
 	js3+='<script src="/static/js/showLaTex.js"></script>\n\n';
 	#print_red(js3);
-	if getConf("function","LaTex")=="on":
+	#if getConf("function","LaTex")=="on":
+	if isLaTexOn:
 		tmp=tmp+js3;
 
 	return tmp;

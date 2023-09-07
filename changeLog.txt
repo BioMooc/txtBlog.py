@@ -284,6 +284,14 @@ v0.1.0-6 fix left corner contents of txt/md;
 v0.1.0-7 fix spell;
 v0.1.0-8 fix spell in ReadMe.txt;
 #
+v0.1.1@hzBig fix mistune 3.x; default LaTex off; [2023.9.7]
+    test on 
+    win10 | Python 3.8.0 | mistune-2.0.5
+    ubutu | Python 3.7.17 | mistune 3.0.1
+    当前 适配 的 Mathjax 库不跟踪，太大了，不放 git 中。
+    移除：from flask import escape
+
+#
 #--> commit
 #--------->push to BioMooc/
 

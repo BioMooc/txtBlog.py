@@ -67,6 +67,38 @@ txtBlog.py uses MathJax.js([cnd](https://cdnjs.com/libraries/mathjax), [github](
 
 开启或者关闭LaTex解析功能，`请在 /config/conf.ini 中的设置 LaTex = on 或 off(默认)`。
 
+> 目前只有 mistune v0.x.x 版本支持 LaTex，而更高的版本 v1.x.x 或 v2.x.x 或 v3.x.x 暂时不支持 LaTex 解析。
+
+> 本质是一个跳过 $$ xx $$ 中的内容，原样留给html页面的 js 渲染公式。
+
+```
+如果太复杂，可能放弃开发该功能。
+> python -V
+Python 3.8.0
+
+卸载老版本
+$ pip3 uninstall mistune #v2.0.5
+
+安装新版本
+$ pip3 install mistune -i https://pypi.douban.com/simple/
+
+还是老版本！尝试更新 pip
+$ python -m pip install --upgrade pip -i https://pypi.douban.com/simple/
+$ python -m pip install --upgrade mistune -i https://pypi.douban.com/simple/
+
+再次指定版本安装
+$ pip3 uninstall mistune
+$ pip3 install mistune==3.0.1 -i https://pypi.douban.com/simple/
+Looking in indexes: https://pypi.douban.com/simple/
+ERROR: Could not find a version that satisfies the requirement mistune==3.0.1 (from versions: 0.1.0, 0.2.0, 0.3.0, 0.3.1, 0.4, 0.4.1, 0.5, 0.5.1, 0.6, 0.7, 0.7.1, 0.7.2, 0.7.3, 0.7.4, 0.8, 0.8.1, 0.8.2, 0.8.3, 0.8.4, 
+2.0.0a1, 2.0.0a2, 2.0.0a3, 2.0.0a4, 2.0.0a5, 2.0.0a6, 2.0.0rc1, 2.0.0, 2.0.1, 2.0.2, 2.0.3, 2.0.4, 2.0.5, 
+3.0.0a1, 3.0.0a2, 3.0.0a3, 3.0.0rc1, 3.0.0rc2, 3.0.0rc3, 3.0.0rc4, 3.0.0rc5)
+目前找不到该版本。
+
+$ pip3 install mistune==0.8.4 -i https://pypi.douban.com/simple/
+```
+
+
 
 (1) 正常显示 **行内**
  
