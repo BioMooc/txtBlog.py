@@ -316,7 +316,7 @@ def getData(k,id):
 
 
 	#凑出来文件路径，如果找不到则定位到错误页面
-	print_red("====> menu: "+k+ "/ " + str(len(menus) ) + "sections" );
+	print_red("====> menu: "+k+ "/ " + str(len(menus) ) + " section(s), port: " + getConf("system", "port") );
 	#print(menus); #顶部菜单数据
 
 	if len( menus )<=n0: #如果 R/ 下分块下标不含url的请求，则报错

@@ -290,6 +290,10 @@ v0.1.1@hzBig fix mistune 3.x; default LaTex off; [2023.9.7]
     ubutu | Python 3.7.17 | mistune 3.0.1
     当前 适配 的 Mathjax 库不跟踪，太大了，不放 git 中。
     移除：from flask import escape
+v0.1.2@hzBig port 定义在 data/_config/ 中 [2023.9.7]
+
+    todo: 支持全文搜索 //todo
+
 
 #
 #--> commit
