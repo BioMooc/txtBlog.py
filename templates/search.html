@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link rel="shortcut icon" href="/static/images/favicon.ico">
+
+<script>
+window.onload = function() {
+    document.getElementById("keyword").focus();
+}
+</script>
+
+<body>
+<div class="center">
+    <h1>txtBlog.py 搜索</h1>
+    <form action="/search" method="GET">
+        关键词: <input type="input" name="keyword" id="keyword" placeholder="Please input a keyword here" class="search" value="{{ keyword if keyword else '' }}" />
+        <input type="submit" value="搜索" />
+    </form>
+</div>
+
+<style>
+body,
+.box pre {
+    margin: 0;
+    padding: 0;
+}
+body {
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+.light {
+    color: #ccc;
+}
+.center {
+    text-align: center;
+    margin: 0 auto;
+}
+.search {
+    width: 400px;
+    height: 16px;
+    padding: 12px 16px;
+    border: 2px solid #c4c7ce;
+    border-radius: 10px 0 0 10px;
+    box-sizing: content-box;
+}
+input[type="submit"] {
+    background-color: #4e6ef2;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    padding: 12px 16px;
+    border-radius: 0 10px 10px 0;
+    border: none;
+}
+input[type="submit"]:hover {
+    background-color: #4662d9;
+}
+pre {
+    word-wrap: break-word !important;
+    white-space: pre-wrap;
+}
+.itemHeader {
+    margin-top: 30px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    display: block;
+}
+.itemHeader a {
+    color: #2440b3;
+    font-size: 18px;
+    font-weight: 400;
+}
+.itemHeader a:hover {
+    text-decoration: underline;
+    color: #315efb;
+}
+.box {
+    padding: 5px;
+}
+</style>
+
+{# 搜索框底部版本号 #}
+<p class='light center'>
+    File path: {{ data_base_path }} | txtBlog search {{ version }} | <a href='/'>Back2Blog</a>
+</p>
+
+{# 搜索结果 #}
+{% if keyword %}
+    {{ search_result|safe }}
+    <hr>
+    <p class="light">The end. | {{ current_time }} by txtBlog.py</p>
+{% elif keyword is not none %}
+    <p>请输入关键词进行检索。| <a href='/'>Back2Blog</a></p>
+{% endif %}
+
+</body>

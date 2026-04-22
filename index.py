@@ -41,8 +41,30 @@ def hello(k,id="0_0"):
 
 
 
-#
-
+#搜索
+@app.route('/search')
+def search():
+    VERSION="v1.0"
+    keyword=request.args.get("keyword", "")
+    # get path
+    base_dir = str(os.path.dirname(__file__))
+    base_dir = base_dir.replace('\\', '/')
+    data_base_path = base_dir + "/data/"
+    
+    # get result
+    search_result=""
+    import time
+    if keyword:
+        from searchlib import SearchController
+        search_controller = SearchController(data_base_path)
+        search_result = search_controller.search(keyword)
+    return render_template('search.html', 
+            keyword=keyword,
+            data_base_path=data_base_path,
+            search_result=search_result,
+            version=VERSION,
+            current_time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) 
+            )
 
 
 # 添加新静态文件的路径，这样就允许data/下的图片加载了

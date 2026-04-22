@@ -274,7 +274,7 @@ v0.0.9-7 config中关掉motto; html 支持 LaTex公式;
 #
 v0.1.0-1 添加底部版本号，在config中设定
 ####################
-# BioMooc/
+# BioMooc/ 添加功能
 ####################
 v0.1.0-2 transfer to BioMooc/
 v0.1.0-3 fix: 如果 URL 乱写则报错
@@ -286,19 +286,21 @@ v0.1.0-8 fix spell in ReadMe.txt;
 #
 v0.1.1@hzBig fix mistune 3.x; default LaTex off; [2023.9.7]
     test on 
-    win10 | Python 3.8.0 | mistune-2.0.5
-    ubutu | Python 3.7.17 | mistune 3.0.1
+    win10  | Python 3.8.0  | mistune-2.0.5
+    ubuntu | Python 3.7.17 | mistune 3.0.1
     当前 适配 的 Mathjax 库不跟踪，太大了，不放 git 中。
     移除：from flask import escape
 v0.1.2@hzBig port 定义在 data/_config/ 中 [2023.9.7]
+v0.1.3@hzBig 添加全文搜索功能，包括特殊符号，如/home/ [2026.4.22]
+	searchlib.py
+	templates/search.html
+	左上角logo点击触发
 
-    todo: 支持全文搜索 //todo
 
 
 #
 #--> commit
 #--------->push to BioMooc/
-
 
 
 
