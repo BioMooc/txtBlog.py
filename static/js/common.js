@@ -117,7 +117,7 @@ function rtrim(str){ //删除右边的空格
 
 /**
 * js回到页面顶部，缓动效果
-* version 1.0
+* version 1.1
 * @param acceleration 速度
 * @param stime 时间间隔 (毫秒)
 **/
@@ -127,7 +127,10 @@ function gotoTop(acceleration,stime) {
 		pos=getXY(),
 		x=pos[0],
 		y=pos[1];
-	
+
+	// 如果到达顶部附近，y小于某个值，直接变成0
+	if(y<=6){ y=0; }
+
 	// 滚动距离 = 目前距离 / 速度, 因为距离原来越小, 速度是大于 1 的数, 所以滚动距离会越来越小
 	var speeding = 1 + acceleration;
 	window.scrollTo(Math.floor(x / speeding), Math.floor(y / speeding));

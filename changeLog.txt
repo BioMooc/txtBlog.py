@@ -295,6 +295,7 @@ v0.1.3@hzBig 添加全文搜索功能，包括特殊符号，如/home/ [2026.4.2
 	searchlib.py
 	templates/search.html
 	左上角logo点击触发
+v0.1.4@NB 框架 gotoTop 缓动函数 fix; [2026.5.3]
 
 
 
