@@ -1,5 +1,5 @@
 ################################
-project name: txtBlog.py
+project name: txtBlog.py [框架版]
 
 #dir:G:\xampp\htdocs\txtBlog.py
 #$ python3 index.py
@@ -296,12 +296,16 @@ v0.1.3@hzBig 添加全文搜索功能，包括特殊符号，如/home/ [2026.4.2
 	templates/search.html
 	左上角logo点击触发
 v0.1.4@NB 框架 gotoTop 缓动函数 fix; [2026.5.3]
+v0.1.5@NB 更新ReadMe [2026.5.4]
 
 
 
 #
-#--> commit
-#--------->push to BioMooc/
+# 更新版本号 /data/_config/conf.ini 中的 version
+#--> commit [功能版]
+#--------->push to BioMooc/ [框架版]
+
+
 
 
 
@@ -309,13 +313,7 @@ v0.1.4@NB 框架 gotoTop 缓动函数 fix; [2026.5.3]
 
 
 todo:
-怎么把公式js代码本地化?
-	http://tool.dawneve.cc/JavaScript/mathJax_demo.html
-	cdn http://t.zoukankan.com/bobofuns-p-6829920.html
-
-
-todo: 
-依赖包 mistune 升级了，怎么升级？怎么适应不同 python 版本?
+1.依赖包 mistune 升级了，怎么升级？怎么适应不同 python 版本?
 https://pypi.org/project/mistune/#history
 mistune 包从0.84 直接跳到了2.0版本，很多函数的名字改了。最近要发布3.0版本。
 对于新版本的 mistune，可以直接使用 mistune.html("*good*")
@@ -330,7 +328,9 @@ from mistune.plugins.math import math
 renderer = mistune.HTMLRenderer()
 markdown = mistune.Markdown(renderer, plugins=[math])
 
-
+2.怎么把公式js代码本地化?
+	http://tool.dawneve.cc/JavaScript/mathJax_demo.html
+	cdn http://t.zoukankan.com/bobofuns-p-6829920.html
 
 
 
@@ -338,9 +338,6 @@ markdown = mistune.Markdown(renderer, plugins=[math])
 
 
 todo:
-1.md 不支持代码高亮 [solved v0.0.7-7]， 代码行号[solved in v0.0.9-1]
-2.md不支持自动生成目录。[solved v0.0.7-6]
-3.不支持随意换肤 [solved v0.0.8, txt file]
 4.不能随着浏览改变目录的样式。
 5.全站静态化如何做?
 	依赖: flask_frozen: 
@@ -349,3 +346,8 @@ todo:
 6.增加不公开内容，就是根据IP地址来源设置可见范围。
 
 
+
+done:
+1.md 不支持代码高亮 [solved v0.0.7-7]， 代码行号[solved in v0.0.9-1]
+2.md不支持自动生成目录。[solved v0.0.7-6]
+3.不支持随意换肤 [solved v0.0.8, txt file]

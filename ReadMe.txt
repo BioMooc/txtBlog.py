@@ -1,5 +1,5 @@
 ################################
-# project name: txtBlog.py is the python3 version of txtBlog 
+# project name: txtBlog.py is the python3 version of txtBlog [框架版]
 # desc: [知识管理]A simple yet powerful blog system for reading and organizing txt files.
 # desc2: python3 编写的、基于文件的文本笔记管理系统，简捷高效，可用于管理知识。
 # version: 0.1.0-4
@@ -53,7 +53,7 @@ $ python -V
 $ pip install flask
 
 使用pip安装 mistune(markdown解析器): 
-在高版本的v2.0和v3.0需要修改本框架才能运行
+在高版本的v2.0和v3.0可能需要修改本框架才能运行
 $ pip3 install mistune==0.8.4 -i https://pypi.douban.com/simple/
 OR
 $ pip3 install mistune==3.0.1 -i https://pypi.douban.com/simple/  #3.x版本也支持了
@@ -133,7 +133,7 @@ $ python index.py
 ]
 第一个字符要和/data/下的文件夹同名。
 
-python对json要求很严格： 
+Python对json要求很严格：
 	- 最后一个元素后不能出现逗号！否则报错。
 	- 键值对中，键要用双引号，值如果是字符串也要用双引号。
 	- json中不能出现注释！相比js中的json，太严格了。
@@ -255,7 +255,7 @@ url已经静态化风格了。
 
 
 todo:
-1. 自由切换 data 文件夹的位置，这样一个博客笔记系统，就可以对应多个内容部分了。
+1. 自由切换 data/ 文件夹的位置，这样一个博客笔记系统，就可以管理/阅读多个内容文件夹了。
 data dir -> shelf; 书架子
 top menu -> book; 书
 left mune -> chapter; 章节
@@ -273,10 +273,13 @@ top contents -> headers; 小标题
 ################################
 如何升级
 1. 从github使用 git clone 下载新版本的框架;
+$ git clone https://github.com/BioMooc/txtBlog.py
+
 2. 把旧项目中自己的data/文件夹，复制粘贴，覆盖新版本中的data/文件夹；
 	- 用户自定义数据: /data/ 顶部目录、左侧目录、自定义文件等；
 	- 底部友情链接: /data/_config/footer_urls.py
 	- 自定义风格: /data/_config/conf.ini
+
 3. 其他小的数据文件包括：
 彩蛋：English 顶部目录下，底部会出现名人名言插件，刷新时随机展示一条名人名言，并周期性滚动。
 	- English 频道的名人名言: 滚动显示的内容在 /static/js/motto.js
